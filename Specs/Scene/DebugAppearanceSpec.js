@@ -78,7 +78,7 @@ defineSuite([
         expect(a.fragmentShaderSource).toBeDefined();
         expect(a.fragmentShaderSource.indexOf('v_normal')).toBeGreaterThan(-1);
 
-        expect(a.material).not.toBeDefined();
+        expect(a.material).toBeUndefined();
         expect(a.attributeName).toEqual('normal');
         expect(a.glslDatatype).toEqual('vec3');
         expect(a.renderState).toEqual(Appearance.getDefaultRenderState(false, false));
@@ -98,7 +98,7 @@ defineSuite([
         expect(a.fragmentShaderSource).toBeDefined();
         expect(a.fragmentShaderSource.indexOf('v_st')).toBeGreaterThan(-1);
 
-        expect(a.material).not.toBeDefined();
+        expect(a.material).toBeUndefined();
         expect(a.attributeName).toEqual('st');
         expect(a.glslDatatype).toEqual('vec2');
         expect(a.renderState).toEqual(Appearance.getDefaultRenderState(false, false));
@@ -119,7 +119,7 @@ defineSuite([
         expect(a.fragmentShaderSource).toBeDefined();
         expect(a.fragmentShaderSource.indexOf('v_rotation')).toBeGreaterThan(-1);
 
-        expect(a.material).not.toBeDefined();
+        expect(a.material).toBeUndefined();
         expect(a.attributeName).toEqual('rotation');
         expect(a.glslDatatype).toEqual('float');
         expect(a.renderState).toEqual(Appearance.getDefaultRenderState(false, false));
@@ -140,7 +140,7 @@ defineSuite([
         expect(a.fragmentShaderSource).toBeDefined();
         expect(a.fragmentShaderSource.indexOf('v_str')).toBeGreaterThan(-1);
 
-        expect(a.material).not.toBeDefined();
+        expect(a.material).toBeUndefined();
         expect(a.attributeName).toEqual('str');
         expect(a.glslDatatype).toEqual('vec3');
         expect(a.renderState).toEqual(Appearance.getDefaultRenderState(false, false));
@@ -161,7 +161,7 @@ defineSuite([
         expect(a.fragmentShaderSource).toBeDefined();
         expect(a.fragmentShaderSource.indexOf('v_quaternion')).toBeGreaterThan(-1);
 
-        expect(a.material).not.toBeDefined();
+        expect(a.material).toBeUndefined();
         expect(a.attributeName).toEqual('quaternion');
         expect(a.glslDatatype).toEqual('vec4');
         expect(a.renderState).toEqual(Appearance.getDefaultRenderState(false, false));

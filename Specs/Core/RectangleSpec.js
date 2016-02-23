@@ -148,7 +148,7 @@ defineSuite([
     });
 
     it('clone works without rectangle', function() {
-        expect(Rectangle.clone()).not.toBeDefined();
+        expect(Rectangle.clone()).toBeUndefined();
     });
 
     it('Equals works in all cases', function() {
@@ -432,36 +432,36 @@ defineSuite([
     it('intersection returns undefined for a point', function() {
         var rectangle1 = new Rectangle(west, south, east, north);
         var rectangle2 = new Rectangle(east, north, east + 0.1, north + 0.1);
-        expect(Rectangle.intersection(rectangle1, rectangle2)).not.toBeDefined();
-        expect(Rectangle.intersection(rectangle2, rectangle1)).not.toBeDefined();
+        expect(Rectangle.intersection(rectangle1, rectangle2)).toBeUndefined();
+        expect(Rectangle.intersection(rectangle2, rectangle1)).toBeUndefined();
     });
 
     it('intersection returns undefined for a east-west line (1)', function() {
         var rectangle1 = new Rectangle(west, south, east, north);
         var rectangle2 = new Rectangle(west, north, east, north + 0.1);
-        expect(Rectangle.intersection(rectangle1, rectangle2)).not.toBeDefined();
-        expect(Rectangle.intersection(rectangle2, rectangle1)).not.toBeDefined();
+        expect(Rectangle.intersection(rectangle1, rectangle2)).toBeUndefined();
+        expect(Rectangle.intersection(rectangle2, rectangle1)).toBeUndefined();
     });
 
     it('intersection returns undefined for a east-west line (2)', function() {
         var rectangle1 = new Rectangle(west, south, east, north);
         var rectangle2 = new Rectangle(west, south + 0.1, east, south);
-        expect(Rectangle.intersection(rectangle1, rectangle2)).not.toBeDefined();
-        expect(Rectangle.intersection(rectangle2, rectangle1)).not.toBeDefined();
+        expect(Rectangle.intersection(rectangle1, rectangle2)).toBeUndefined();
+        expect(Rectangle.intersection(rectangle2, rectangle1)).toBeUndefined();
     });
 
     it('intersection returns undefined for a north-south line (1)', function() {
         var rectangle1 = new Rectangle(west, south, east, north);
         var rectangle2 = new Rectangle(east, south, east + 0.1, north);
-        expect(Rectangle.intersection(rectangle1, rectangle2)).not.toBeDefined();
-        expect(Rectangle.intersection(rectangle2, rectangle1)).not.toBeDefined();
+        expect(Rectangle.intersection(rectangle1, rectangle2)).toBeUndefined();
+        expect(Rectangle.intersection(rectangle2, rectangle1)).toBeUndefined();
     });
 
     it('intersection returns undefined for a north-south line (2)', function() {
         var rectangle1 = new Rectangle(west, south, east, north);
         var rectangle2 = new Rectangle(west - 0.1, south, west, north);
-        expect(Rectangle.intersection(rectangle1, rectangle2)).not.toBeDefined();
-        expect(Rectangle.intersection(rectangle2, rectangle1)).not.toBeDefined();
+        expect(Rectangle.intersection(rectangle1, rectangle2)).toBeUndefined();
+        expect(Rectangle.intersection(rectangle2, rectangle1)).toBeUndefined();
     });
 
     it('intersection returns undefined for a north-south line (3)', function() {
@@ -472,8 +472,8 @@ defineSuite([
 
         var rectangle1 = new Rectangle(west, south, east, north);
         var rectangle2 = new Rectangle(east, south, east + 0.1, north);
-        expect(Rectangle.intersection(rectangle1, rectangle2)).not.toBeDefined();
-        expect(Rectangle.intersection(rectangle2, rectangle1)).not.toBeDefined();
+        expect(Rectangle.intersection(rectangle1, rectangle2)).toBeUndefined();
+        expect(Rectangle.intersection(rectangle2, rectangle1)).toBeUndefined();
     });
 
     it('intersection returns undefined for a north-south line (4)', function() {
@@ -484,24 +484,24 @@ defineSuite([
 
         var rectangle1 = new Rectangle(west, south, east, north);
         var rectangle2 = new Rectangle(west - 0.1, south, west, north);
-        expect(Rectangle.intersection(rectangle1, rectangle2)).not.toBeDefined();
-        expect(Rectangle.intersection(rectangle2, rectangle1)).not.toBeDefined();
+        expect(Rectangle.intersection(rectangle1, rectangle2)).toBeUndefined();
+        expect(Rectangle.intersection(rectangle2, rectangle1)).toBeUndefined();
     });
 
     it('intersection returns undefined if north-south direction is degenerate', function() {
         var rectangle1 = new Rectangle(west, south, east, north);
         var rectangle2 = new Rectangle(west, north + 0.1, east, north + 0.2);
-        expect(Rectangle.intersection(rectangle1, rectangle2)).not.toBeDefined();
-        expect(Rectangle.intersection(rectangle2, rectangle1)).not.toBeDefined();
+        expect(Rectangle.intersection(rectangle1, rectangle2)).toBeUndefined();
+        expect(Rectangle.intersection(rectangle2, rectangle1)).toBeUndefined();
     });
 
     it('intersection returns undefined if east-west direction is degenerate', function() {
         var rectangle1 = new Rectangle(west, south, east, north);
         var rectangle2 = new Rectangle(east + 0.1, south, east + 0.2, north);
-        expect(Rectangle.intersection(rectangle1, rectangle2)).not.toBeDefined();
-        expect(Rectangle.intersection(rectangle2, rectangle1)).not.toBeDefined();
+        expect(Rectangle.intersection(rectangle1, rectangle2)).toBeUndefined();
+        expect(Rectangle.intersection(rectangle2, rectangle1)).toBeUndefined();
     });
-    
+
     it('union works without a result parameter', function() {
         var rectangle1 = new Rectangle(0.5, 0.1, 0.75, 0.9);
         var rectangle2 = new Rectangle(0.4, 0.0, 0.85, 0.8);

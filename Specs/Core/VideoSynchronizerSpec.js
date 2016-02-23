@@ -45,12 +45,12 @@ defineSuite([
     it('Can default construct', function() {
         var videoSynchronizer = new VideoSynchronizer();
 
-        expect(videoSynchronizer.clock).not.toBeDefined();
-        expect(videoSynchronizer.element).not.toBeDefined();
+        expect(videoSynchronizer.clock).toBeUndefined();
+        expect(videoSynchronizer.element).toBeUndefined();
         expect(videoSynchronizer.epoch).toBe(Iso8601.MINIMUM_VALUE);
         expect(videoSynchronizer.tolerance).toBe(1.0);
         expect(videoSynchronizer.isDestroyed()).toBe(false);
-        expect(videoSynchronizer.destroy()).not.toBeDefined();
+        expect(videoSynchronizer.destroy()).toBeUndefined();
         expect(videoSynchronizer.isDestroyed()).toBe(true);
     });
 
@@ -72,7 +72,7 @@ defineSuite([
         expect(videoSynchronizer.epoch).toBe(epoch);
         expect(videoSynchronizer.tolerance).toBe(tolerance);
         expect(videoSynchronizer.isDestroyed()).toBe(false);
-        expect(videoSynchronizer.destroy()).not.toBeDefined();
+        expect(videoSynchronizer.destroy()).toBeUndefined();
         expect(videoSynchronizer.isDestroyed()).toBe(true);
     });
 

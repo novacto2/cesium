@@ -63,7 +63,7 @@ defineSuite([
     it('constructor', function() {
         var a = new PerInstanceColorAppearance();
 
-        expect(a.material).not.toBeDefined();
+        expect(a.material).toBeUndefined();
         expect(a.vertexShaderSource).toBeDefined();
         expect(a.fragmentShaderSource).toBeDefined();
         expect(a.renderState).toEqual(Appearance.getDefaultRenderState(true, false));

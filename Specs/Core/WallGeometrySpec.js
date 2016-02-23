@@ -49,7 +49,7 @@ defineSuite([
                 49.0, 18.0, 1000.0
             ])
         }));
-        expect(geometry).not.toBeDefined();
+        expect(geometry).toBeUndefined();
     });
 
     it('does not throw when positions are unique but close', function() {

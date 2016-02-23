@@ -96,7 +96,7 @@ defineSuite([
         if (supportsImageRenderingPixelated) {
             expect(FeatureDetection.imageRenderingValue()).toBeDefined();
         } else {
-            expect(FeatureDetection.imageRenderingValue()).not.toBeDefined();
+            expect(FeatureDetection.imageRenderingValue()).toBeUndefined();
         }
     });
 });

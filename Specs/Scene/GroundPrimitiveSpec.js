@@ -157,7 +157,7 @@ defineSuite([
 
     it('default constructs', function() {
         primitive = new GroundPrimitive();
-        expect(primitive.geometryInstance).not.toBeDefined();
+        expect(primitive.geometryInstance).toBeUndefined();
         expect(primitive.show).toEqual(true);
         expect(primitive.vertexCacheOptimize).toEqual(false);
         expect(primitive.interleave).toEqual(false);
@@ -208,7 +208,7 @@ defineSuite([
         expect(primitive.geometryInstance).toBeDefined();
         scene.groundPrimitives.add(primitive);
         scene.renderForSpecs();
-        expect(primitive.geometryInstance).not.toBeDefined();
+        expect(primitive.geometryInstance).toBeUndefined();
     });
 
     it('does not release geometry instances when releaseGeometryInstances is false', function() {
@@ -545,7 +545,7 @@ defineSuite([
         verifyGroundPrimitiveRender(primitive, rectColor);
 
         var pickObject = scene.pickForSpecs();
-        expect(pickObject).not.toBeDefined();
+        expect(pickObject).toBeUndefined();
     });
 
     it('internally invalid asynchronous geometry resolves promise and sets ready', function() {
@@ -769,7 +769,7 @@ defineSuite([
 
         verifyGroundPrimitiveRender(primitive, rectColor);
 
-        expect(primitive.getGeometryInstanceAttributes('unknown')).not.toBeDefined();
+        expect(primitive.getGeometryInstanceAttributes('unknown')).toBeUndefined();
     });
 
     it('isDestroyed', function() {

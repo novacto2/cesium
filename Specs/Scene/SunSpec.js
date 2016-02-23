@@ -75,7 +75,7 @@ defineSuite([
 
         scene._frameState = frameState;
         var command = sun.update(scene);
-        expect(command).not.toBeDefined();
+        expect(command).toBeUndefined();
 
         sun.destroy();
     });
@@ -95,7 +95,7 @@ defineSuite([
         us.update(frameState);
         scene._frameState = frameState;
         var command = sun.update(scene);
-        expect(command).not.toBeDefined();
+        expect(command).toBeUndefined();
 
         sun.destroy();
     });
@@ -115,7 +115,7 @@ defineSuite([
         us.update(frameState);
         scene._frameState = frameState;
         var command = sun.update(scene);
-        expect(command).not.toBeDefined();
+        expect(command).toBeUndefined();
 
         sun.destroy();
     });

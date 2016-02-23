@@ -47,7 +47,7 @@ defineSuite([
                 49.0, 18.0, 1000.0
             ])
         }));
-        expect(geometry).not.toBeDefined();
+        expect(geometry).toBeUndefined();
     });
 
     it('creates positions relative to ellipsoid', function() {

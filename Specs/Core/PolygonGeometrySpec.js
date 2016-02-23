@@ -52,7 +52,7 @@ defineSuite([
                 0.0, 0.0
             ])
         }));
-        expect(geometry).not.toBeDefined();
+        expect(geometry).toBeUndefined();
     });
 
     it('createGeometry returns undefined due to duplicate positions extruded', function() {
@@ -64,7 +64,7 @@ defineSuite([
             ]),
             extrudedHeight: 2
         }));
-        expect(geometry).not.toBeDefined();
+        expect(geometry).toBeUndefined();
     });
 
     it('createGeometry returns undefined due to duplicate hierarchy positions', function() {
@@ -84,36 +84,37 @@ defineSuite([
         };
 
         var geometry = PolygonGeometry.createGeometry(new PolygonGeometry({ polygonHierarchy : hierarchy }));
-        expect(geometry).not.toBeDefined();
+        expect(geometry).toBeUndefined();
     });
 
     it('computes positions', function() {
         var p = PolygonGeometry.createGeometry(PolygonGeometry.fromPositions({
             vertexformat : VertexFormat.POSITION_ONLY,
             positions : Cartesian3.fromDegreesArray([
-                -50.0, -50.0,
-                50.0, -50.0,
-                50.0, 50.0,
-                -50.0, 50.0
+                -1.0, -1.0,
+                1.0, -1.0,
+                1.0, 1.0,
+                -1.0, 1.0
             ]),
-            granularity : CesiumMath.PI_OVER_THREE
+            granularity: CesiumMath.RADIANS_PER_DEGREE
         }));
 
-        expect(p.attributes.position.values.length).toEqual(3 * 11);
-        expect(p.indices.length).toEqual(3 * 14);
+        var numVertices = 13;
+        var numTriangles = 16;
+        expect(p.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(p.indices.length).toEqual(numTriangles * 3);
     });
 
     it('computes positions with per position heights', function() {
         var ellipsoid = Ellipsoid.WGS84;
         var positions = Cartesian3.fromDegreesArrayHeights([
-           -50.0, -50.0, 100000.0,
-           50.0, -50.0, 0.0,
-           50.0, 50.0, 0.0,
-           -50.0, 50.0, 0.0
+           -1.0, -1.0, 100000.0,
+           1.0, -1.0, 0.0,
+           1.0, 1.0, 0.0,
+           -1.0, 1.0, 0.0
        ]);
         var p = PolygonGeometry.createGeometry(PolygonGeometry.fromPositions({
             positions : positions,
-            granularity : CesiumMath.PI_OVER_THREE,
             perPositionHeight : true
         }));
 
@@ -125,20 +126,21 @@ defineSuite([
         var p = PolygonGeometry.createGeometry(PolygonGeometry.fromPositions({
             vertexFormat : VertexFormat.ALL,
             positions : Cartesian3.fromDegreesArray([
-                -50.0, -50.0,
-                50.0, -50.0,
-                50.0, 50.0,
-                -50.0, 50.0
-            ]),
-            granularity : CesiumMath.PI_OVER_THREE
+                -1.0, -1.0,
+                1.0, -1.0,
+                1.0, 1.0,
+                -1.0, 1.0
+            ])
         }));
 
-        expect(p.attributes.position.values.length).toEqual(3 * 11);
-        expect(p.attributes.st.values.length).toEqual(2 * 11);
-        expect(p.attributes.normal.values.length).toEqual(3 * 11);
-        expect(p.attributes.tangent.values.length).toEqual(3 * 11);
-        expect(p.attributes.binormal.values.length).toEqual(3 * 11);
-        expect(p.indices.length).toEqual(3 * 14);
+        var numVertices = 13;
+        var numTriangles = 16;
+        expect(p.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(p.attributes.st.values.length).toEqual(numVertices * 2);
+        expect(p.attributes.normal.values.length).toEqual(numVertices * 3);
+        expect(p.attributes.tangent.values.length).toEqual(numVertices * 3);
+        expect(p.attributes.binormal.values.length).toEqual(numVertices * 3);
+        expect(p.indices.length).toEqual(numTriangles * 3);
     });
 
     it('creates a polygon from hierarchy', function() {
@@ -173,8 +175,10 @@ defineSuite([
             granularity : CesiumMath.PI_OVER_THREE
         }));
 
-        expect(p.attributes.position.values.length).toEqual(3 * 14);
-        expect(p.indices.length).toEqual(3 * 10);
+        var numVertices = 14;
+        var numTriangles = 10;
+        expect(p.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(p.indices.length).toEqual(numTriangles * 3);
     });
 
     it('removes duplicates in polygon hierarchy', function() {
@@ -212,8 +216,10 @@ defineSuite([
             granularity : CesiumMath.PI_OVER_THREE
         }));
 
-        expect(p.attributes.position.values.length).toEqual(3 * 14);
-        expect(p.indices.length).toEqual(3 * 10);
+        var numVertices = 14;
+        var numTriangles = 10;
+        expect(p.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(p.indices.length).toEqual(numTriangles * 3);
     });
 
     it('creates a polygon from clockwise hierarchy', function() {
@@ -248,8 +254,10 @@ defineSuite([
             granularity : CesiumMath.PI_OVER_THREE
         }));
 
-        expect(p.attributes.position.values.length).toEqual(3 * 14);
-        expect(p.indices.length).toEqual(3 * 10);
+        var numVertices = 14;
+        var numTriangles = 10;
+        expect(p.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(p.indices.length).toEqual(numTriangles * 3);
     });
 
     it('doesn\'t reverse clockwise input array', function() {
@@ -364,35 +372,37 @@ defineSuite([
         var p = PolygonGeometry.createGeometry(PolygonGeometry.fromPositions({
             vertexFormat : VertexFormat.POSITION_ONLY,
             positions : Cartesian3.fromDegreesArray([
-                -50.0, -50.0,
-                50.0, -50.0,
-                50.0, 50.0,
-                -50.0, 50.0
+                -1.0, -1.0,
+                1.0, -1.0,
+                1.0, 1.0,
+                -1.0, 1.0
             ]),
-            granularity : CesiumMath.PI_OVER_THREE,
             extrudedHeight: 30000
         }));
 
-        expect(p.attributes.position.values.length).toEqual(3 * 21 * 2);
-        expect(p.indices.length).toEqual(3 * 20 * 2);
+        var numVertices = 50; //(13 positions + 8 edge positions + 4 corners) duplicated
+        var numTriangles = 48; //(16 top and bottom) + 4 each side
+        expect(p.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(p.indices.length).toEqual(numTriangles * 3);
     });
 
     it('removes duplicates extruded', function() {
         var p = PolygonGeometry.createGeometry(PolygonGeometry.fromPositions({
             vertexFormat : VertexFormat.POSITION_ONLY,
             positions : Cartesian3.fromDegreesArray([
-                -50.0, -50.0,
-                50.0, -50.0,
-                50.0, 50.0,
-                -50.0, 50.0,
-                -50.0, -50.0
+                -1.0, -1.0,
+                1.0, -1.0,
+                1.0, 1.0,
+                -1.0, 1.0,
+                -1.0, -1.0
             ]),
-            granularity : CesiumMath.PI_OVER_THREE,
             extrudedHeight: 30000
         }));
 
-        expect(p.attributes.position.values.length).toEqual(3 * 21 * 2);
-        expect(p.indices.length).toEqual(3 * 20 * 2);
+        var numVertices = 50; //(13 positions + 8 edge positions + 4 corners) duplicated
+        var numTriangles = 48; //(16 top and bottom) + 4 each side
+        expect(p.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(p.indices.length).toEqual(numTriangles * 3);
     });
 
     it('computes all attributes extruded', function() {
@@ -400,21 +410,22 @@ defineSuite([
             vertexFormat : VertexFormat.ALL,
             polygonHierarchy: {
                 positions : Cartesian3.fromDegreesArray([
-                    -50.0, -50.0,
-                    50.0, -50.0,
-                    50.0, 50.0,
-                    -50.0, 50.0
+                    -1.0, -1.0,
+                    1.0, -1.0,
+                    1.0, 1.0,
+                    -1.0, 1.0
                 ])},
-            granularity : CesiumMath.PI_OVER_THREE,
             extrudedHeight: 30000
         }));
 
-        expect(p.attributes.position.values.length).toEqual(3 * 21 * 2);
-        expect(p.attributes.st.values.length).toEqual(2 * 21 * 2);
-        expect(p.attributes.normal.values.length).toEqual(3 * 21 * 2);
-        expect(p.attributes.tangent.values.length).toEqual(3 * 21 * 2);
-        expect(p.attributes.binormal.values.length).toEqual(3 * 21 * 2);
-        expect(p.indices.length).toEqual(3 * 20 * 2);
+        var numVertices = 50; //(13 positions + 8 edge positions + 4 corners) duplicated
+        var numTriangles = 48; //(16 top and bottom) + 4 each side
+        expect(p.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(p.attributes.st.values.length).toEqual(numVertices * 2);
+        expect(p.attributes.normal.values.length).toEqual(numVertices * 3);
+        expect(p.attributes.tangent.values.length).toEqual(numVertices * 3);
+        expect(p.attributes.binormal.values.length).toEqual(numVertices * 3);
+        expect(p.indices.length).toEqual(numTriangles * 3);
     });
 
     it('computes correct texture coordinates for polygon with height', function() {

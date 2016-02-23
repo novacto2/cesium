@@ -40,7 +40,7 @@ defineSuite([
             polylinePositions: [new Cartesian3()],
             shapePositions: shape
         }));
-        expect(geometry).not.toBeDefined();
+        expect(geometry).toBeUndefined();
     });
 
     it('createGeometry returnes undefined without 3 unique shape positions', function() {
@@ -48,7 +48,7 @@ defineSuite([
             polylinePositions: [Cartesian3.UNIT_X, Cartesian3.UNIT_Y],
             shapePositions: [Cartesian2.UNIT_X, Cartesian2.UNIT_X, Cartesian2.UNIT_X]
         }));
-        expect(geometry).not.toBeDefined();
+        expect(geometry).toBeUndefined();
     });
 
     it('computes positions', function() {
@@ -61,8 +61,10 @@ defineSuite([
             cornerType: CornerType.MITERED
         }));
 
-        expect(m.attributes.position.values.length).toEqual(3 * 6 * 4);
-        expect(m.indices.length).toEqual(2 * 24 + 8);
+        var numVertices = 24; // 6 polyline positions * 4 box positions
+        var numLines = 28; // 4 lines connecting 5 positions + 4 lines on 2 end caps
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numLines * 2);
     });
 
     it('computes positions, clockwise shape', function() {
@@ -75,8 +77,10 @@ defineSuite([
             cornerType: CornerType.MITERED
         }));
 
-        expect(m.attributes.position.values.length).toEqual(3 * 6 * 4);
-        expect(m.indices.length).toEqual(2 * 24 + 8);
+        var numVertices = 24; // 6 polyline positions * 4 box positions
+        var numLines = 28; // 4 lines connecting 5 positions + 4 lines on 2 end caps
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numLines * 2);
     });
 
     it('computes right turn', function() {
@@ -90,8 +94,10 @@ defineSuite([
             shapePositions: shape
         }));
 
-        expect(m.attributes.position.values.length).toEqual(3 * 5 * 4);
-        expect(m.indices.length).toEqual(2 * 24);
+        var numVertices = 20; // 5 polyline positions (2 ends + 3 for the corner) * 4 box positions
+        var numLines = 24; // 4 lines connecting 4 positions + 4 lines on 2 end caps
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numLines * 2);
     });
 
     it('computes left turn', function() {
@@ -105,8 +111,10 @@ defineSuite([
             shapePositions: shape
         }));
 
-        expect(m.attributes.position.values.length).toEqual(3 * 5 * 4);
-        expect(m.indices.length).toEqual(2 * 24);
+        var numVertices = 20; // 5 polyline positions (2 ends + 3 for the corner) * 4 box positions
+        var numLines = 24; // 4 lines connecting 4 positions + 4 lines on 2 end caps
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numLines * 2);
     });
 
     it('computes with rounded corners', function() {
@@ -121,9 +129,11 @@ defineSuite([
             shapePositions: shape
         }));
 
-        var corners = 90/5*2;
-        expect(m.attributes.position.values.length).toEqual(3 * (corners * 4 + 7 * 4));
-        expect(m.indices.length).toEqual(2 * (corners * 4 + 6 * 4 + 8));
+        var corners = 90 / 5 * 2 * 4;
+        var numVertices = corners + 28; // corners + 7 segments
+        var numLines = corners + 32; // corners + 6 segments + 2 end caps
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numLines * 2);
     });
 
     it('computes with beveled corners', function() {
@@ -138,8 +148,10 @@ defineSuite([
             shapePositions: shape
         }));
 
-        expect(m.attributes.position.values.length).toEqual(3 * 20 * 2);
-        expect(m.indices.length).toEqual(2 * 20 * 2 + 8);
+        var numVertices = 40; // 10 positions * shape
+        var numLines = 44; // 10 segments + 8 edge lines
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numLines * 2);
     });
 
     var positions = [new Cartesian3(1.0, 0.0, 0.0), new Cartesian3(0.0, 1.0, 0.0), new Cartesian3(0.0, 0.0, 1.0)];

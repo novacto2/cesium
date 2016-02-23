@@ -312,7 +312,7 @@ defineSuite([
         verifyPrimitivesRender(primitives, [0, 0, 0, 255]);
 
         var pickedObject = scene.pickForSpecs();
-        expect(pickedObject).not.toBeDefined();
+        expect(pickedObject).toBeUndefined();
     });
 
     it('picks child composites', function() {

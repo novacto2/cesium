@@ -32,7 +32,7 @@ defineSuite([
 
         var intersectionPoint = IntersectionTests.rayPlane(ray, plane);
 
-        expect(intersectionPoint).not.toBeDefined();
+        expect(intersectionPoint).toBeUndefined();
     });
 
     it('rayPlane misses (parallel)', function() {
@@ -41,7 +41,7 @@ defineSuite([
 
         var intersectionPoint = IntersectionTests.rayPlane(ray, plane);
 
-        expect(intersectionPoint).not.toBeDefined();
+        expect(intersectionPoint).toBeUndefined();
     });
 
     it('rayPlane throws without ray', function() {
@@ -110,7 +110,7 @@ defineSuite([
         var ray = new Ray(Cartesian3.negate(Cartesian3.UNIT_Z, new Cartesian3()), Cartesian3.UNIT_Z);
 
         var intersection = IntersectionTests.rayTriangle(ray, p0, p1, p2, true);
-        expect(intersection).not.toBeDefined();
+        expect(intersection).toBeUndefined();
     });
 
     it('rayTriangle does not intersect outside the 0-1 edge', function() {
@@ -121,7 +121,7 @@ defineSuite([
         var ray = new Ray(new Cartesian3(0.0, -1.0, 1.0), Cartesian3.negate(Cartesian3.UNIT_Z, new Cartesian3()));
 
         var intersection = IntersectionTests.rayTriangle(ray, p0, p1, p2);
-        expect(intersection).not.toBeDefined();
+        expect(intersection).toBeUndefined();
     });
 
     it('rayTriangle does not intersect outside the 1-2 edge', function() {
@@ -132,7 +132,7 @@ defineSuite([
         var ray = new Ray(new Cartesian3(1.0, 1.0, 1.0), Cartesian3.negate(Cartesian3.UNIT_Z, new Cartesian3()));
 
         var intersection = IntersectionTests.rayTriangle(ray, p0, p1, p2);
-        expect(intersection).not.toBeDefined();
+        expect(intersection).toBeUndefined();
     });
 
     it('rayTriangle does not intersect outside the 2-0 edge', function() {
@@ -143,7 +143,7 @@ defineSuite([
         var ray = new Ray(new Cartesian3(-1.0, 1.0, 1.0), Cartesian3.negate(Cartesian3.UNIT_Z, new Cartesian3()));
 
         var intersection = IntersectionTests.rayTriangle(ray, p0, p1, p2);
-        expect(intersection).not.toBeDefined();
+        expect(intersection).toBeUndefined();
     });
 
     it('rayTriangle does not intersect parallel ray and triangle', function() {
@@ -154,7 +154,7 @@ defineSuite([
         var ray = new Ray(new Cartesian3(-1.0, 0.0, 1.0), Cartesian3.UNIT_X);
 
         var intersection = IntersectionTests.rayTriangle(ray, p0, p1, p2);
-        expect(intersection).not.toBeDefined();
+        expect(intersection).toBeUndefined();
     });
 
     it('rayTriangle does not intersect behind the ray origin', function() {
@@ -165,7 +165,7 @@ defineSuite([
         var ray = new Ray(Cartesian3.UNIT_Z, Cartesian3.UNIT_Z);
 
         var intersection = IntersectionTests.rayTriangle(ray, p0, p1, p2);
-        expect(intersection).not.toBeDefined();
+        expect(intersection).toBeUndefined();
     });
 
     it('lineSegmentTriangle throws without v0', function() {
@@ -231,7 +231,7 @@ defineSuite([
         var v1 = Cartesian3.UNIT_Z;
 
         var intersection = IntersectionTests.lineSegmentTriangle(v0, v1, p0, p1, p2, true);
-        expect(intersection).not.toBeDefined();
+        expect(intersection).toBeUndefined();
     });
 
     it('lineSegmentTriangle does not intersect outside the 0-1 edge', function() {
@@ -243,7 +243,7 @@ defineSuite([
         var v1 = Cartesian3.add(v0, Cartesian3.negate(Cartesian3.UNIT_Z, new Cartesian3()), new Cartesian3());
 
         var intersection = IntersectionTests.lineSegmentTriangle(v0, v1, p0, p1, p2);
-        expect(intersection).not.toBeDefined();
+        expect(intersection).toBeUndefined();
     });
 
     it('lineSegmentTriangle does not intersect outside the 1-2 edge', function() {
@@ -255,7 +255,7 @@ defineSuite([
         var v1 = Cartesian3.add(v0, Cartesian3.negate(Cartesian3.UNIT_Z, new Cartesian3()), new Cartesian3());
 
         var intersection = IntersectionTests.lineSegmentTriangle(v0, v1, p0, p1, p2);
-        expect(intersection).not.toBeDefined();
+        expect(intersection).toBeUndefined();
     });
 
     it('lineSegmentTriangle does not intersect outside the 2-0 edge', function() {
@@ -267,7 +267,7 @@ defineSuite([
         var v1 = Cartesian3.add(v0, Cartesian3.negate(Cartesian3.UNIT_Z, new Cartesian3()), new Cartesian3());
 
         var intersection = IntersectionTests.lineSegmentTriangle(v0, v1, p0, p1, p2);
-        expect(intersection).not.toBeDefined();
+        expect(intersection).toBeUndefined();
     });
 
     it('lineSegmentTriangle does not intersect parallel ray and triangle', function() {
@@ -279,7 +279,7 @@ defineSuite([
         var v1 = Cartesian3.add(v0, Cartesian3.UNIT_X, new Cartesian3());
 
         var intersection = IntersectionTests.lineSegmentTriangle(v0, v1, p0, p1, p2);
-        expect(intersection).not.toBeDefined();
+        expect(intersection).toBeUndefined();
     });
 
     it('lineSegmentTriangle does not intersect behind the v0', function() {
@@ -291,7 +291,7 @@ defineSuite([
         var v1 = Cartesian3.multiplyByScalar(Cartesian3.UNIT_Z, 2.0, new Cartesian3());
 
         var intersection = IntersectionTests.lineSegmentTriangle(v0, v1, p0, p1, p2);
-        expect(intersection).not.toBeDefined();
+        expect(intersection).toBeUndefined();
     });
 
     it('lineSegmentTriangle does not intersect behind the v1', function() {
@@ -303,7 +303,7 @@ defineSuite([
         var v1 = Cartesian3.UNIT_Z;
 
         var intersection = IntersectionTests.lineSegmentTriangle(v0, v1, p0, p1, p2);
-        expect(intersection).not.toBeDefined();
+        expect(intersection).toBeUndefined();
     });
 
     it('raySphere throws without ray', function() {
@@ -413,7 +413,7 @@ defineSuite([
 
         var ray = new Ray(Cartesian3.UNIT_X, Cartesian3.UNIT_Z);
         var intersections = IntersectionTests.raySphere(ray, unitSphere);
-        expect(intersections).not.toBeDefined();
+        expect(intersections).toBeUndefined();
     });
 
     it('raySphere no intersections', function() {
@@ -421,19 +421,19 @@ defineSuite([
 
         var ray = new Ray(new Cartesian3(2.0, 0.0, 0.0), new Cartesian3(0.0, 0.0, 1.0));
         var intersections = IntersectionTests.raySphere(ray, unitSphere);
-        expect(intersections).not.toBeDefined();
+        expect(intersections).toBeUndefined();
 
         ray = new Ray(new Cartesian3(2.0, 0.0, 0.0), new Cartesian3(0.0, 0.0, -1.0));
         intersections = IntersectionTests.raySphere(ray, unitSphere);
-        expect(intersections).not.toBeDefined();
+        expect(intersections).toBeUndefined();
 
         ray = new Ray(new Cartesian3(2.0, 0.0, 0.0), new Cartesian3(0.0, 1.0, 0.0));
         intersections = IntersectionTests.raySphere(ray, unitSphere);
-        expect(intersections).not.toBeDefined();
+        expect(intersections).toBeUndefined();
 
         ray = new Ray(new Cartesian3(2.0, 0.0, 0.0), new Cartesian3(0.0, -1.0, 0.0));
         intersections = IntersectionTests.raySphere(ray, unitSphere);
-        expect(intersections).not.toBeDefined();
+        expect(intersections).toBeUndefined();
     });
 
     it('raySphere intersection with sphere center not the origin', function() {
@@ -597,7 +597,7 @@ defineSuite([
 
         var ray = new Ray(Cartesian3.UNIT_X, Cartesian3.UNIT_Z);
         var intersections = IntersectionTests.rayEllipsoid(ray, unitSphere);
-        expect(intersections).not.toBeDefined();
+        expect(intersections).toBeUndefined();
     });
 
     it('rayEllipsoid no intersections', function() {
@@ -605,19 +605,19 @@ defineSuite([
 
         var ray = new Ray(new Cartesian3(2.0, 0.0, 0.0), new Cartesian3(0.0, 0.0, 1.0));
         var intersections = IntersectionTests.rayEllipsoid(ray, unitSphere);
-        expect(intersections).not.toBeDefined();
+        expect(intersections).toBeUndefined();
 
         ray = new Ray(new Cartesian3(2.0, 0.0, 0.0), new Cartesian3(0.0, 0.0, -1.0));
         intersections = IntersectionTests.rayEllipsoid(ray, unitSphere);
-        expect(intersections).not.toBeDefined();
+        expect(intersections).toBeUndefined();
 
         ray = new Ray(new Cartesian3(2.0, 0.0, 0.0), new Cartesian3(0.0, 1.0, 0.0));
         intersections = IntersectionTests.rayEllipsoid(ray, unitSphere);
-        expect(intersections).not.toBeDefined();
+        expect(intersections).toBeUndefined();
 
         ray = new Ray(new Cartesian3(2.0, 0.0, 0.0), new Cartesian3(0.0, -1.0, 0.0));
         intersections = IntersectionTests.rayEllipsoid(ray, unitSphere);
-        expect(intersections).not.toBeDefined();
+        expect(intersections).toBeUndefined();
     });
 
     it('grazingAltitudeLocation throws without ray', function() {
@@ -681,7 +681,7 @@ defineSuite([
     it('grazingAltitudeLocation is undefined', function() {
         var ellipsoid = Ellipsoid.UNIT_SPHERE;
         var ray = new Ray(Cartesian3.ZERO, Cartesian3.UNIT_Z);
-        expect(IntersectionTests.grazingAltitudeLocation(ray, ellipsoid)).not.toBeDefined();
+        expect(IntersectionTests.grazingAltitudeLocation(ray, ellipsoid)).toBeUndefined();
     });
 
     it('lineSegmentPlane intersects', function() {
@@ -705,7 +705,7 @@ defineSuite([
 
         var intersectionPoint = IntersectionTests.lineSegmentPlane(endPoint0, endPoint1, plane);
 
-        expect(intersectionPoint).not.toBeDefined();
+        expect(intersectionPoint).toBeUndefined();
     });
 
     it('lineSegmentPlane misses (entire segment in front of plane)', function() {
@@ -716,7 +716,7 @@ defineSuite([
 
         var intersectionPoint = IntersectionTests.lineSegmentPlane(endPoint0, endPoint1, plane);
 
-        expect(intersectionPoint).not.toBeDefined();
+        expect(intersectionPoint).toBeUndefined();
     });
 
     it('lineSegmentPlane misses (parallel)', function() {
@@ -727,7 +727,7 @@ defineSuite([
 
         var intersectionPoint = IntersectionTests.lineSegmentPlane(endPoint0, endPoint1, plane);
 
-        expect(intersectionPoint).not.toBeDefined();
+        expect(intersectionPoint).toBeUndefined();
     });
 
     it('lineSegmentPlane throws without endPoint0', function() {
@@ -755,7 +755,7 @@ defineSuite([
         var p2 = new Cartesian3(1.0, 0.0, 2.0);
 
         var triangles = IntersectionTests.trianglePlaneIntersection(p0, p1, p2, plane);
-        expect(triangles).not.toBeDefined();
+        expect(triangles).toBeUndefined();
      });
 
     it('triangle is behind a plane', function() {
@@ -765,7 +765,7 @@ defineSuite([
         var p2 = new Cartesian3(1.0, 0.0, 2.0);
 
         var triangles = IntersectionTests.trianglePlaneIntersection(p0, p1, p2, plane);
-        expect(triangles).not.toBeDefined();
+        expect(triangles).toBeUndefined();
      });
 
     it('triangle intersects plane with p0 behind', function() {

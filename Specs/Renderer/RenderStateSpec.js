@@ -399,13 +399,13 @@ defineSuite([
 
         expect(cache[fullKey].referenceCount).toEqual(1);
         expect(cache[undefinedKey].referenceCount).toEqual(2);
-        expect(cache[paramKey]).not.toBeDefined();
+        expect(cache[paramKey]).toBeUndefined();
 
         RenderState.removeFromCache();
         RenderState.removeFromCache();
 
-        expect(cache[undefinedKey]).not.toBeDefined();
-        expect(cache[fullKey]).not.toBeDefined();
+        expect(cache[undefinedKey]).toBeUndefined();
+        expect(cache[fullKey]).toBeUndefined();
     });
 
     it('fails to create (frontFace)', function() {

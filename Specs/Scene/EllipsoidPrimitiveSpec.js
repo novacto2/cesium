@@ -186,7 +186,7 @@ defineSuite([
         ellipsoid.show = false;
 
         var pickedObject = pick(frameState, ellipsoid, 0, 0);
-        expect(pickedObject).not.toBeDefined();
+        expect(pickedObject).toBeUndefined();
     });
 
     it('is not picked (alpha === 0.0)', function() {
@@ -194,7 +194,7 @@ defineSuite([
         ellipsoid.material.uniforms.color.alpha = 0.0;
 
         var pickedObject = pick(frameState, ellipsoid, 0, 0);
-        expect(pickedObject).not.toBeDefined();
+        expect(pickedObject).toBeUndefined();
     });
 
     it('isDestroyed', function() {

@@ -41,14 +41,14 @@ defineSuite([
 
     it('default constructs', function() {
         var encoding = new TerrainEncoding();
-        expect(encoding.quantization).not.toBeDefined();
-        expect(encoding.minimumHeight).not.toBeDefined();
-        expect(encoding.maximumHeight).not.toBeDefined();
-        expect(encoding.center).not.toBeDefined();
-        expect(encoding.toScaledENU).not.toBeDefined();
-        expect(encoding.fromScaledENU).not.toBeDefined();
-        expect(encoding.matrix).not.toBeDefined();
-        expect(encoding.hasVertexNormals).not.toBeDefined();
+        expect(encoding.quantization).toBeUndefined();
+        expect(encoding.minimumHeight).toBeUndefined();
+        expect(encoding.maximumHeight).toBeUndefined();
+        expect(encoding.center).toBeUndefined();
+        expect(encoding.toScaledENU).toBeUndefined();
+        expect(encoding.fromScaledENU).toBeUndefined();
+        expect(encoding.matrix).toBeUndefined();
+        expect(encoding.hasVertexNormals).toBeUndefined();
     });
 
     it('constructs without quantization', function() {

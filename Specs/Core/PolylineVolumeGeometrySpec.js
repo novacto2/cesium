@@ -41,7 +41,7 @@ defineSuite([
             polylinePositions: [new Cartesian3()],
             shapePositions: shape
         }));
-        expect(geometry).not.toBeDefined();
+        expect(geometry).toBeUndefined();
     });
 
     it('createGeometry returnes undefined without 3 unique shape positions', function() {
@@ -49,7 +49,7 @@ defineSuite([
             polylinePositions: [Cartesian3.UNIT_X, Cartesian3.UNIT_Y],
             shapePositions: [Cartesian2.UNIT_X, Cartesian2.UNIT_X, Cartesian2.UNIT_X]
         }));
-        expect(geometry).not.toBeDefined();
+        expect(geometry).toBeUndefined();
     });
 
     it('computes positions', function() {
@@ -63,8 +63,10 @@ defineSuite([
             shapePositions: shape
         }));
 
-        expect(m.attributes.position.values.length).toEqual(3 * (4 * 2 + 4 * 2 * 6));
-        expect(m.indices.length).toEqual(3 * 10 * 2 + 24 * 3);
+        var numVertices = 56; // (6 polyline positions * 4 box positions) * 2 for duplications + 8 end positions
+        var numTriangles = 44; //8 triangles for each of 5 segments + 2 triangles on each end
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numTriangles * 3);
     });
 
     it('computes positions, clockwise shape', function() {
@@ -78,8 +80,10 @@ defineSuite([
             shapePositions: shape.reverse()
         }));
 
-        expect(m.attributes.position.values.length).toEqual(3 * (4 * 2 + 4 * 2 * 6));
-        expect(m.indices.length).toEqual(3 * 10 * 2 + 24 * 3);
+        var numVertices = 56; // (6 polyline positions * 4 box positions) * 2 for duplications + 8 end positions
+        var numTriangles = 44; //8 triangles for each of 5 segments + 2 triangles on each end
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numTriangles * 3);
     });
 
     it('compute all vertex attributes', function() {
@@ -93,12 +97,14 @@ defineSuite([
             shapePositions: shape
         }));
 
-        expect(m.attributes.position.values.length).toEqual(3 * (4 * 2 + 4 * 2 * 6));
-        expect(m.attributes.st.values.length).toEqual(2 * (4 * 2 + 4 * 2 * 6));
-        expect(m.attributes.normal.values.length).toEqual(3 * (4 * 2 + 4 * 2 * 6));
-        expect(m.attributes.tangent.values.length).toEqual(3 * (4 * 2 + 4 * 2 * 6));
-        expect(m.attributes.binormal.values.length).toEqual(3 * (4 * 2 + 4 * 2 * 6));
-        expect(m.indices.length).toEqual(3 * 10 * 2 + 24 * 3);
+        var numVertices = 56; // (6 polyline positions * 4 box positions) * 2 for duplications + 8 end positions
+        var numTriangles = 44; //8 triangles for each of 5 segments + 2 triangles on each end
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.attributes.st.values.length).toEqual(numVertices * 2);
+        expect(m.attributes.normal.values.length).toEqual(numVertices * 3);
+        expect(m.attributes.tangent.values.length).toEqual(numVertices * 3);
+        expect(m.attributes.binormal.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numTriangles * 3);
     });
 
     it('computes right turn', function() {
@@ -113,8 +119,10 @@ defineSuite([
             shapePositions: shape
         }));
 
-        expect(m.attributes.position.values.length).toEqual(3 * (4 * 2 + 4 * 2 * 6));
-        expect(m.indices.length).toEqual(3 * 10 * 2 + 24 * 3);
+        var numVertices = 56; // 5 positions: duplicate ends 3 times, edges 2 times and corner 4 times
+        var numTriangles = 44; //8 triangles for each of 5 segments + 2 triangles on each end
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numTriangles * 3);
     });
 
     it('computes left turn', function() {
@@ -129,8 +137,10 @@ defineSuite([
             shapePositions: shape
         }));
 
-        expect(m.attributes.position.values.length).toEqual(3 * (4 * 2 + 4 * 2 * 6));
-        expect(m.indices.length).toEqual(3 * 10 * 2 + 24 * 3);
+        var numVertices = 56; // 5 positions: duplicate ends 3 times, edges 2 times and corner 4 times
+        var numTriangles = 44; //8 triangles for each of 5 segments + 2 triangles on each end
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numTriangles * 3);
     });
 
     it('computes with rounded corners', function() {
@@ -146,9 +156,11 @@ defineSuite([
             shapePositions: shape
         }));
 
-        var corners = 90/5 * 2;
-        expect(m.attributes.position.values.length).toEqual(3 * (corners * 4 * 2 * 2 + 4 * 2 * 9));
-        expect(m.indices.length).toEqual(3 * (corners * 4 * 2 * 2 + 4 * 7 * 2 + 4));
+        var corners = (90/5*2) * 4 * 4; //positions * shape * duplicate
+        var numVertices = corners + 72; // corners + 9 positions duplicated * shape
+        var numTriangles = corners + 60; // corners + 8 triangles for 7 segments + 2 on each end
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(3 * numTriangles);
     });
 
     it('computes with beveled corners', function() {
@@ -164,8 +176,11 @@ defineSuite([
             shapePositions: shape
         }));
 
-        expect(m.attributes.position.values.length).toEqual(3 * (2 * 8 + 4 * 2 * 9));
-        expect(m.indices.length).toEqual(3 * (8 * 2 + 4 * 7 * 2 + 4));
+        var corners = 4 * 4; //positions * shape * duplicate
+        var numVertices = corners + 72; // corners + 9 positions duplicated * shape
+        var numTriangles = corners + 60; // corners + 8 triangles for 7 segments + 2 on each end
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(3 * numTriangles);
     });
 
     it('computes sharp turns', function() {

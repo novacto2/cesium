@@ -92,9 +92,9 @@ defineSuite([
         expect(label.horizontalOrigin).toEqual(HorizontalOrigin.LEFT);
         expect(label.verticalOrigin).toEqual(VerticalOrigin.BOTTOM);
         expect(label.scale).toEqual(1.0);
-        expect(label.id).not.toBeDefined();
-        expect(label.translucencyByDistance).not.toBeDefined();
-        expect(label.pixelOffsetScaleByDistance).not.toBeDefined();
+        expect(label.id).toBeUndefined();
+        expect(label.translucencyByDistance).toBeUndefined();
+        expect(label.pixelOffsetScaleByDistance).toBeUndefined();
     });
 
     it('can add a label with specified values', function() {
@@ -552,7 +552,7 @@ defineSuite([
         });
 
         var pick = scene.pick(new Cartesian2(0, 0));
-        expect(pick).not.toBeDefined();
+        expect(pick).toBeUndefined();
     });
 
     it('picks a label using translucencyByDistance', function() {
@@ -574,7 +574,7 @@ defineSuite([
         label.translucencyByDistance = translucency;
 
         pick = scene.pick(new Cartesian2(0, 0));
-        expect(pick).not.toBeDefined();
+        expect(pick).toBeUndefined();
     });
 
     it('picks a label using pixelOffsetScaleByDistance', function() {
@@ -597,7 +597,7 @@ defineSuite([
         label.pixelOffsetScaleByDistance = pixelOffsetScale;
 
         pick = scene.pick(new Cartesian2(0, 0));
-        expect(pick).not.toBeDefined();
+        expect(pick).toBeUndefined();
     });
 
     it('throws when calling get without an index', function() {
@@ -1732,7 +1732,7 @@ defineSuite([
             scene.globe.removedCallback = false;
             l.heightReference = HeightReference.NONE;
             expect(scene.globe.removedCallback).toEqual(true);
-            expect(scene.globe.callback).not.toBeDefined();
+            expect(scene.globe.callback).toBeUndefined();
         });
 
         it('changing the position updates the callback', function() {

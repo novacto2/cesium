@@ -160,21 +160,21 @@ defineSuite([
         widget = createCesiumWidget(container, {
             globe : false
         });
-        expect(widget.scene.globe).not.toBeDefined();
+        expect(widget.scene.globe).toBeUndefined();
     });
 
     it('does not create a skyBox if option is false', function() {
         widget = createCesiumWidget(container, {
             skyBox : false
         });
-        expect(widget.scene.skyBox).not.toBeDefined();
+        expect(widget.scene.skyBox).toBeUndefined();
     });
 
     it('does not create a skyAtmosphere if option is false', function() {
         widget = createCesiumWidget(container, {
             skyAtmosphere : false
         });
-        expect(widget.scene.skyAtmosphere).not.toBeDefined();
+        expect(widget.scene.skyAtmosphere).toBeUndefined();
     });
 
     it('sets expected options skyBox', function() {

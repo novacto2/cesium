@@ -65,9 +65,9 @@ defineSuite([
         expect(tween.duration).toEqual(1.0);
         expect(tween.delay).toEqual(0.0);
         expect(tween.easingFunction).toEqual(EasingFunction.LINEAR_NONE);
-        expect(tween.update).not.toBeDefined();
-        expect(tween.complete).not.toBeDefined();
-        expect(tween.cancel).not.toBeDefined();
+        expect(tween.update).toBeUndefined();
+        expect(tween.complete).toBeUndefined();
+        expect(tween.cancel).toBeUndefined();
     });
 
     it('add() adds with a duration of zero', function() {

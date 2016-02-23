@@ -55,7 +55,7 @@ defineSuite([
             context : context
         });
         expect(va.numberOfAttributes).toEqual(0);
-        expect(va.indexBuffer).not.toBeDefined();
+        expect(va.indexBuffer).toBeUndefined();
     });
 
     it('creates with no geometry', function() {
@@ -64,7 +64,7 @@ defineSuite([
             interleave : true
         });
         expect(va.numberOfAttributes).toEqual(0);
-        expect(va.indexBuffer).not.toBeDefined();
+        expect(va.indexBuffer).toBeUndefined();
     });
 
     it('creates a single-attribute vertex (non-interleaved)', function() {
@@ -86,7 +86,7 @@ defineSuite([
         });
 
         expect(va.numberOfAttributes).toEqual(1);
-        expect(va.indexBuffer).not.toBeDefined();
+        expect(va.indexBuffer).toBeUndefined();
 
         var position = geometry.attributes.position;
         expect(va.getAttribute(0).index).toEqual(0);
@@ -119,7 +119,7 @@ defineSuite([
         });
 
         expect(va.numberOfAttributes).toEqual(1);
-        expect(va.indexBuffer).not.toBeDefined();
+        expect(va.indexBuffer).toBeUndefined();
 
         var position = geometry.attributes.position;
         expect(va.getAttribute(0).index).toEqual(0);
@@ -155,7 +155,7 @@ defineSuite([
         });
 
         expect(va.numberOfAttributes).toEqual(2);
-        expect(va.indexBuffer).not.toBeDefined();
+        expect(va.indexBuffer).toBeUndefined();
 
         var position = geometry.attributes.customPosition;
         expect(va.getAttribute(0).index).toEqual(0);
@@ -199,7 +199,7 @@ defineSuite([
         });
 
         expect(va.numberOfAttributes).toEqual(2);
-        expect(va.indexBuffer).not.toBeDefined();
+        expect(va.indexBuffer).toBeUndefined();
 
         var position = geometry.attributes.customPosition;
         var normal = geometry.attributes.customNormal;
@@ -245,7 +245,7 @@ defineSuite([
         });
 
         expect(va.numberOfAttributes).toEqual(2);
-        expect(va.indexBuffer).not.toBeDefined();
+        expect(va.indexBuffer).toBeUndefined();
 
         var position = geometry.attributes.position;
         var colors = geometry.attributes.colors;

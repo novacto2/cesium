@@ -130,7 +130,7 @@ defineSuite([
 
     it('get heading is undefined when morphing', function() {
         camera._mode = SceneMode.MORPHING;
-        expect(camera.heading).not.toBeDefined();
+        expect(camera.heading).toBeUndefined();
     });
 
     it('get heading in 2D', function() {
@@ -293,7 +293,7 @@ defineSuite([
 
     it('pitch is undefined when mode is not 3D or Columbus view', function() {
         camera._mode = SceneMode.MORPHING;
-        expect(camera.pitch).not.toBeDefined();
+        expect(camera.pitch).toBeUndefined();
     });
 
     it('get pitch in CV', function() {
@@ -1931,7 +1931,7 @@ defineSuite([
     });
 
     it('does not animate in 3D', function() {
-        expect(camera.createCorrectPositionTween(0.05)).not.toBeDefined();
+        expect(camera.createCorrectPositionTween(0.05)).toBeUndefined();
     });
 
     it('animates position to visible map in 2D', function() {
@@ -2404,6 +2404,6 @@ defineSuite([
         camera.right = Cartesian3.cross(camera.direction, camera.up, new Cartesian3());
 
         var rect = camera.computeViewRectangle();
-        expect(rect).not.toBeDefined();
+        expect(rect).toBeUndefined();
     });
 });

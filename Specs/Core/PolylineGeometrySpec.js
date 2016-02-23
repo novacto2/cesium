@@ -121,7 +121,7 @@ defineSuite([
             vertexFormat : VertexFormat.POSITION_ONLY,
             followSurface : false
         }));
-        expect(geometry).not.toBeDefined();
+        expect(geometry).toBeUndefined();
     });
 
     var positions = [new Cartesian3(1, 2, 3), new Cartesian3(4, 5, 6), new Cartesian3(7, 8, 9)];

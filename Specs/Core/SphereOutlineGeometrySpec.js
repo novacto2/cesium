@@ -38,8 +38,10 @@ defineSuite([
             subdivisions: 2
         }));
 
-        expect(m.attributes.position.values.length).toEqual(6 * 3);
-        expect(m.indices.length).toEqual(6 * 2);
+        var numVertices = 6;
+        var numLines = 6;
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numLines * 2);
         expect(m.boundingSphere.radius).toEqual(1);
     });
 

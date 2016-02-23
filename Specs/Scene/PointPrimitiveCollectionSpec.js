@@ -62,9 +62,9 @@ defineSuite([
         expect(p.outlineColor.blue).toEqual(0.0);
         expect(p.outlineColor.alpha).toEqual(0.0);
         expect(p.outlineWidth).toEqual(0.0);
-        expect(p.scaleByDistance).not.toBeDefined();
-        expect(p.translucencyByDistance).not.toBeDefined();
-        expect(p.id).not.toBeDefined();
+        expect(p.scaleByDistance).toBeUndefined();
+        expect(p.translucencyByDistance).toBeUndefined();
+        expect(p.id).toBeUndefined();
     });
 
     it('can add and remove before first render.', function() {
@@ -149,7 +149,7 @@ defineSuite([
             scaleByDistance : new NearFarScalar(1.0, 3.0, 1.0e6, 0.0)
         });
         p.scaleByDistance = undefined;
-        expect(p.scaleByDistance).not.toBeDefined();
+        expect(p.scaleByDistance).toBeUndefined();
     });
 
     it('disables pointPrimitive translucencyByDistance', function() {
@@ -157,7 +157,7 @@ defineSuite([
             translucencyByDistance : new NearFarScalar(1.0, 1.0, 1.0e6, 0.0)
         });
         p.translucencyByDistance = undefined;
-        expect(p.translucencyByDistance).not.toBeDefined();
+        expect(p.translucencyByDistance).toBeUndefined();
     });
 
     it('renders pointPrimitive with scaleByDistance', function() {
@@ -597,7 +597,7 @@ defineSuite([
         });
 
         var pick = scene.pick(new Cartesian2(0, 0));
-        expect(pick).not.toBeDefined();
+        expect(pick).toBeUndefined();
     });
 
     it('picks a pointPrimitive using scaleByDistance', function() {
@@ -617,7 +617,7 @@ defineSuite([
         p.scaleByDistance = scaleByDistance;
 
         pick = scene.pick(new Cartesian2(0, 0));
-        expect(pick).not.toBeDefined();
+        expect(pick).toBeUndefined();
     });
 
     it('picks a pointPrimitive using translucencyByDistance', function() {
@@ -637,7 +637,7 @@ defineSuite([
         p.translucencyByDistance = translucency;
 
         pick = scene.pick(new Cartesian2(0, 0));
-        expect(pick).not.toBeDefined();
+        expect(pick).toBeUndefined();
     });
 
     it('computes screen space position', function() {

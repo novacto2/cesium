@@ -345,7 +345,7 @@ defineSuite([
     });
 
     it('getNode returns undefined when node does not exist', function() {
-        expect(texturedBoxModel.getNode('name-of-node-that-does-not-exist')).not.toBeDefined();
+        expect(texturedBoxModel.getNode('name-of-node-that-does-not-exist')).toBeUndefined();
     });
 
     it('getNode returns a node', function() {
@@ -381,7 +381,7 @@ defineSuite([
     });
 
     it('getMesh returns undefined when mesh does not exist', function() {
-        expect(texturedBoxModel.getMesh('name-of-mesh-that-does-not-exist')).not.toBeDefined();
+        expect(texturedBoxModel.getMesh('name-of-mesh-that-does-not-exist')).toBeUndefined();
     });
 
     it('getMesh returns a mesh', function() {
@@ -406,7 +406,7 @@ defineSuite([
     });
 
     it('getMaterial returns undefined when mesh does not exist', function() {
-        expect(texturedBoxModel.getMaterial('name-of-material-that-does-not-exist')).not.toBeDefined();
+        expect(texturedBoxModel.getMaterial('name-of-material-that-does-not-exist')).toBeUndefined();
     });
 
     it('getMaterial returns a material', function() {
@@ -445,7 +445,7 @@ defineSuite([
 
     it('ModelMaterial.getValue returns undefined when parameter does not exist', function() {
         var material = texturedBoxModel.getMaterial('Texture');
-        expect(material.getValue('name-of-parameter-that-does-not-exist')).not.toBeDefined();
+        expect(material.getValue('name-of-parameter-that-does-not-exist')).toBeUndefined();
     });
 
     it('boundingSphere throws when model is not loaded', function() {
@@ -758,7 +758,7 @@ defineSuite([
         cesiumAirModel.zoomTo();
 
         var pick = scene.pick(new Cartesian2(0, 0));
-        expect(pick).not.toBeDefined();
+        expect(pick).toBeUndefined();
     });
 
     ///////////////////////////////////////////////////////////////////////////
@@ -825,9 +825,9 @@ defineSuite([
         });
         expect(a).toBeDefined();
         expect(a.name).toEqual('animation_1');
-        expect(a.startTime).not.toBeDefined();
+        expect(a.startTime).toBeUndefined();
         expect(a.delay).toEqual(0.0);
-        expect(a.stopTime).not.toBeDefined();
+        expect(a.stopTime).toBeUndefined();
         expect(a.removeOnStop).toEqual(false);
         expect(a.speedup).toEqual(1.0);
         expect(a.reverse).toEqual(false);
@@ -1183,7 +1183,7 @@ defineSuite([
             releaseGltfJson : true
         }).then(function(m) {
             expect(m.releaseGltfJson).toEqual(true);
-            expect(m.gltf).not.toBeDefined();
+            expect(m.gltf).toBeUndefined();
 
             verifyRender(m);
             primitives.remove(m);
@@ -1197,7 +1197,7 @@ defineSuite([
             asynchronous : true
         }).then(function(m) {
             expect(m.releaseGltfJson).toEqual(true);
-            expect(m.gltf).not.toBeDefined();
+            expect(m.gltf).toBeUndefined();
 
             verifyRender(m);
             primitives.remove(m);
@@ -1209,10 +1209,10 @@ defineSuite([
 
         // This cache for this model is initially empty
         var gltfCache = Model._gltfCache;
-        expect(gltfCache[key]).not.toBeDefined();
+        expect(gltfCache[key]).toBeUndefined();
 
         var modelRendererResourceCache = scene.context.cache.modelRendererResourceCache;
-        expect(modelRendererResourceCache[key]).not.toBeDefined();
+        expect(modelRendererResourceCache[key]).toBeUndefined();
 
         // Use a custom cache key to avoid conflicting with previous tests
         var promise = loadModel(boxUrl, {
@@ -1253,8 +1253,8 @@ defineSuite([
             expect(modelRendererResourceCache[key].count).toEqual(1);
 
             primitives.remove(m2);
-            expect(gltfCache[key]).not.toBeDefined();
-            expect(modelRendererResourceCache[key]).not.toBeDefined();
+            expect(gltfCache[key]).toBeUndefined();
+            expect(modelRendererResourceCache[key]).toBeUndefined();
         });
     });
 
@@ -1263,7 +1263,7 @@ defineSuite([
 
         // This cache for this model is initially empty
         var gltfCache = Model._gltfCache;
-        expect(gltfCache[key]).not.toBeDefined();
+        expect(gltfCache[key]).toBeUndefined();
 
         // Use a custom cache key to avoid conflicting with previous tests
         var promise = loadModel(boxUrl, {
@@ -1296,7 +1296,7 @@ defineSuite([
             expect(gltfCache[key].count).toEqual(1);
 
             primitives.remove(m2);
-            expect(gltfCache[key]).not.toBeDefined();
+            expect(gltfCache[key]).toBeUndefined();
         });
     });
 
@@ -1305,10 +1305,10 @@ defineSuite([
 
         // This cache for this model is initially empty
         var gltfCache = Model._gltfCache;
-        expect(gltfCache[key]).not.toBeDefined();
+        expect(gltfCache[key]).toBeUndefined();
 
         var modelRendererResourceCache = scene.context.cache.modelRendererResourceCache;
-        expect(modelRendererResourceCache[key]).not.toBeDefined();
+        expect(modelRendererResourceCache[key]).toBeUndefined();
 
         var m = primitives.add(new Model({
             gltf : texturedBoxModel.gltf,
@@ -1337,8 +1337,8 @@ defineSuite([
             verifyRender(m);
 
             primitives.remove(m);
-            expect(gltfCache[key]).not.toBeDefined();
-            expect(modelRendererResourceCache[key]).not.toBeDefined();
+            expect(gltfCache[key]).toBeUndefined();
+            expect(modelRendererResourceCache[key]).toBeUndefined();
         });
     });
 
@@ -1348,12 +1348,12 @@ defineSuite([
 
         // This cache for these keys is initially empty
         var gltfCache = Model._gltfCache;
-        expect(gltfCache[key]).not.toBeDefined();
-        expect(gltfCache[key3]).not.toBeDefined();
+        expect(gltfCache[key]).toBeUndefined();
+        expect(gltfCache[key3]).toBeUndefined();
 
         var modelRendererResourceCache = scene.context.cache.modelRendererResourceCache;
-        expect(modelRendererResourceCache[key]).not.toBeDefined();
-        expect(modelRendererResourceCache[key3]).not.toBeDefined();
+        expect(modelRendererResourceCache[key]).toBeUndefined();
+        expect(modelRendererResourceCache[key3]).toBeUndefined();
 
         var m = primitives.add(new Model({
             gltf : texturedBoxModel.gltf,
@@ -1415,12 +1415,12 @@ defineSuite([
 
             primitives.remove(m);
             primitives.remove(m2);
-            expect(gltfCache[key]).not.toBeDefined();
-            expect(modelRendererResourceCache[key]).not.toBeDefined();
+            expect(gltfCache[key]).toBeUndefined();
+            expect(modelRendererResourceCache[key]).toBeUndefined();
 
             primitives.remove(m3);
-            expect(gltfCache[key3]).not.toBeDefined();
-            expect(modelRendererResourceCache[key3]).not.toBeDefined();
+            expect(gltfCache[key3]).toBeUndefined();
+            expect(modelRendererResourceCache[key3]).toBeUndefined();
         });
     });
 

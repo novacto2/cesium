@@ -35,7 +35,7 @@ defineSuite([
         expect(deferreds.length).toBe(2);
         expect(promise1).toBeDefined();
         expect(promise2).toBeDefined();
-        expect(promise3).not.toBeDefined();
+        expect(promise3).toBeUndefined();
 
         deferreds[0].resolve();
 
@@ -45,7 +45,7 @@ defineSuite([
 
         var promise5 = throttleRequestByServer('http://foo.com/4', requestFunction);
         expect(deferreds.length).toBe(3);
-        expect(promise5).not.toBeDefined();
+        expect(promise5).toBeUndefined();
 
         throttleRequestByServer.maximumRequestsPerServer = 3;
         var promise6 = throttleRequestByServer('http://foo.com/4', requestFunction);

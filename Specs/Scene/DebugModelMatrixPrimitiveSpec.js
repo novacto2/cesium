@@ -37,7 +37,7 @@ defineSuite([
         expect(p.width).toEqual(2.0);
         expect(p.modelMatrix).toEqual(Matrix4.IDENTITY);
         expect(p.show).toEqual(true);
-        expect(p.id).not.toBeDefined();
+        expect(p.id).toBeUndefined();
         p.destroy();
     });
 

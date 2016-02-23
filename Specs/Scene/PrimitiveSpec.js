@@ -129,8 +129,8 @@ defineSuite([
 
     it('default constructs', function() {
         primitive = new Primitive();
-        expect(primitive.geometryInstances).not.toBeDefined();
-        expect(primitive.appearance).not.toBeDefined();
+        expect(primitive.geometryInstances).toBeUndefined();
+        expect(primitive.appearance).toBeUndefined();
         expect(primitive.modelMatrix).toEqual(Matrix4.IDENTITY);
         expect(primitive.show).toEqual(true);
         expect(primitive.vertexCacheOptimize).toEqual(false);
@@ -188,7 +188,7 @@ defineSuite([
         expect(primitive.geometryInstances).toBeDefined();
         scene.primitives.add(primitive);
         scene.renderForSpecs();
-        expect(primitive.geometryInstances).not.toBeDefined();
+        expect(primitive.geometryInstances).toBeUndefined();
     });
 
     it('does not release geometry instances when releaseGeometryInstances is false', function() {
@@ -645,7 +645,7 @@ defineSuite([
         attributes = primitive.getGeometryInstanceAttributes('rectangle2');
         expect(attributes.color).toBeDefined();
         expect(attributes.show).toBeDefined();
-        expect(attributes.not_used).not.toBeDefined();
+        expect(attributes.not_used).toBeUndefined();
     });
 
     it('modify color instance attribute', function() {
@@ -747,7 +747,7 @@ defineSuite([
         verifyPrimitiveRender(primitive, rectangle1);
 
         var pickObject = scene.pickForSpecs();
-        expect(pickObject).not.toBeDefined();
+        expect(pickObject).toBeUndefined();
     });
 
     it('does not cull when cull is false', function() {
@@ -989,7 +989,7 @@ defineSuite([
         scene.primitives.add(primitive);
         scene.renderForSpecs();
 
-        expect(primitive.getGeometryInstanceAttributes('unknown')).not.toBeDefined();
+        expect(primitive.getGeometryInstanceAttributes('unknown')).toBeUndefined();
     });
 
     it('isDestroyed', function() {

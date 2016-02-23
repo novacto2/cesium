@@ -35,7 +35,7 @@ defineSuite([
             ]),
             width: 10000
         }));
-        expect(geometry).not.toBeDefined();
+        expect(geometry).toBeUndefined();
     });
 
     it('computes positions', function() {

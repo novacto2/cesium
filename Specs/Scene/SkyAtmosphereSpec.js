@@ -90,7 +90,7 @@ defineSuite([
         us.update(frameState);
 
         var command = s.update(frameState);
-        expect(command).not.toBeDefined();
+        expect(command).toBeUndefined();
     });
 
     it('does not render in 2D', function() {
@@ -108,7 +108,7 @@ defineSuite([
         us.update(frameState);
 
         var command = s.update(frameState);
-        expect(command).not.toBeDefined();
+        expect(command).toBeUndefined();
     });
 
     it('does not render without a color pass', function() {
@@ -126,7 +126,7 @@ defineSuite([
         us.update(frameState);
 
         var command = s.update(frameState);
-        expect(command).not.toBeDefined();
+        expect(command).toBeUndefined();
     });
 
     it('gets ellipsoid', function() {

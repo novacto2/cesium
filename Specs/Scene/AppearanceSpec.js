@@ -116,7 +116,7 @@ defineSuite([
 
         var rs = appearance.getRenderState();
         expect(rs.depthMask).toEqual(true);
-        expect(rs.blending).not.toBeDefined();
+        expect(rs.blending).toBeUndefined();
 
         appearance.translucent = true;
         rs = appearance.getRenderState();

@@ -546,7 +546,7 @@ defineSuite([
             var uniformState = scene.context.uniformState;
 
             scene.renderForSpecs();
-            expect(uniformState.globeDepthTexture).not.toBeDefined();
+            expect(uniformState.globeDepthTexture).toBeUndefined();
 
             scene.copyGlobeDepth = true;
             scene.renderForSpecs();
@@ -570,7 +570,7 @@ defineSuite([
         var windowPosition = new Cartesian2(canvas.clientWidth / 2, canvas.clientHeight / 2);
 
         var position = scene.pickPosition(windowPosition);
-        expect(position).not.toBeDefined();
+        expect(position).toBeUndefined();
 
         var rectanglePrimitive = createRectangle(rectangle);
         rectanglePrimitive.appearance.material.uniforms.color = new Color(1.0, 0.0, 0.0, 1.0);
@@ -608,7 +608,7 @@ defineSuite([
         scene.renderForSpecs();
 
         var position = scene.pickPosition(windowPosition);
-        expect(position).not.toBeDefined();
+        expect(position).toBeUndefined();
 
         scene.useDepthPicking = true;
 

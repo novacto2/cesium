@@ -731,7 +731,7 @@ defineSuite([
         expect(geometry.attributes.positionLow.values[0]).toEqual(encoded.low.x);
         expect(geometry.attributes.positionLow.values[1]).toEqual(encoded.low.y);
         expect(geometry.attributes.positionLow.values[2]).toEqual(encoded.low.z);
-        expect(geometry.attributes.position).not.toBeDefined();
+        expect(geometry.attributes.position).toBeUndefined();
     });
 
     it('encodeAttribute throws without a geometry', function() {
@@ -1682,9 +1682,9 @@ defineSuite([
             maximum : new Cartesian3(250000.0, 250000.0, 250000.0),
             minimum : new Cartesian3(-250000.0, -250000.0, -250000.0)
         }));
-        expect(geometry.attributes.normal).not.toBeDefined();
+        expect(geometry.attributes.normal).toBeUndefined();
         geometry = GeometryPipeline.compressVertices(geometry);
-        expect(geometry.attributes.normal).not.toBeDefined();
+        expect(geometry.attributes.normal).toBeUndefined();
     });
 
     it('compressVertices compresses normals', function() {
@@ -1725,7 +1725,7 @@ defineSuite([
 
         geometry = GeometryPipeline.compressVertices(geometry);
 
-        expect(geometry.attributes.st).not.toBeDefined();
+        expect(geometry.attributes.st).toBeUndefined();
         expect(geometry.attributes.compressedAttributes).toBeDefined();
 
         var st = geometry.attributes.compressedAttributes.values;
@@ -1757,8 +1757,8 @@ defineSuite([
 
         geometry = GeometryPipeline.compressVertices(geometry);
 
-        expect(geometry.attributes.normal).not.toBeDefined();
-        expect(geometry.attributes.st).not.toBeDefined();
+        expect(geometry.attributes.normal).toBeUndefined();
+        expect(geometry.attributes.st).toBeUndefined();
         expect(geometry.attributes.compressedAttributes).toBeDefined();
 
         var stNormal = geometry.attributes.compressedAttributes.values;
@@ -1790,8 +1790,8 @@ defineSuite([
 
         geometry = GeometryPipeline.compressVertices(geometry);
 
-        expect(geometry.attributes.tangent).not.toBeDefined();
-        expect(geometry.attributes.binormal).not.toBeDefined();
+        expect(geometry.attributes.tangent).toBeUndefined();
+        expect(geometry.attributes.binormal).toBeUndefined();
         expect(geometry.attributes.compressedAttributes).toBeDefined();
 
         var compressedNormals = geometry.attributes.compressedAttributes.values;
@@ -2153,7 +2153,7 @@ defineSuite([
             })
         });
         GeometryPipeline.splitLongitude(instance);
-        expect(instance.geometry).not.toBeDefined();
+        expect(instance.geometry).toBeUndefined();
 
         expect(instance.westHemisphereGeometry).toBeDefined();
         expect(instance.westHemisphereGeometry.indices).toBeDefined();
@@ -2183,7 +2183,7 @@ defineSuite([
             })
         });
         GeometryPipeline.splitLongitude(instance);
-        expect(instance.geometry).not.toBeDefined();
+        expect(instance.geometry).toBeUndefined();
 
         expect(instance.westHemisphereGeometry).toBeDefined();
         expect(instance.westHemisphereGeometry.indices).toBeDefined();
@@ -2213,7 +2213,7 @@ defineSuite([
             })
         });
         GeometryPipeline.splitLongitude(instance);
-        expect(instance.geometry).not.toBeDefined();
+        expect(instance.geometry).toBeUndefined();
 
         expect(instance.westHemisphereGeometry).toBeDefined();
         expect(instance.westHemisphereGeometry.indices).toBeDefined();
@@ -2243,7 +2243,7 @@ defineSuite([
             })
         });
         GeometryPipeline.splitLongitude(instance);
-        expect(instance.geometry).not.toBeDefined();
+        expect(instance.geometry).toBeUndefined();
 
         expect(instance.westHemisphereGeometry).toBeDefined();
         expect(instance.westHemisphereGeometry.indices).toBeDefined();
@@ -2273,7 +2273,7 @@ defineSuite([
             })
         });
         GeometryPipeline.splitLongitude(instance);
-        expect(instance.geometry).not.toBeDefined();
+        expect(instance.geometry).toBeUndefined();
 
         expect(instance.westHemisphereGeometry).toBeDefined();
         expect(instance.westHemisphereGeometry.indices).toBeDefined();
@@ -2303,7 +2303,7 @@ defineSuite([
             })
         });
         GeometryPipeline.splitLongitude(instance);
-        expect(instance.geometry).not.toBeDefined();
+        expect(instance.geometry).toBeUndefined();
 
         expect(instance.westHemisphereGeometry).toBeDefined();
         expect(instance.westHemisphereGeometry.indices).toBeDefined();
@@ -2449,7 +2449,7 @@ defineSuite([
             })
         });
         GeometryPipeline.splitLongitude(instance);
-        expect(instance.geometry).not.toBeDefined();
+        expect(instance.geometry).toBeUndefined();
 
         expect(instance.westHemisphereGeometry).toBeDefined();
         expect(instance.westHemisphereGeometry.indices).toBeDefined();
@@ -2495,7 +2495,7 @@ defineSuite([
             })
         });
         GeometryPipeline.splitLongitude(instance);
-        expect(instance.geometry).not.toBeDefined();
+        expect(instance.geometry).toBeUndefined();
 
         expect(instance.westHemisphereGeometry).toBeDefined();
         expect(instance.westHemisphereGeometry.indices).toBeDefined();
@@ -2572,7 +2572,7 @@ defineSuite([
         GeometryPipeline.splitLongitude(instance);
         var geometry = instance.geometry;
 
-        expect(geometry.indices).not.toBeDefined();
+        expect(geometry.indices).toBeUndefined();
 
         var positions = geometry.attributes.position.values;
         expect(positions).toEqual([1.0, 1.0, 0.0, 1.0, 1.0, 2.0]);
@@ -2609,7 +2609,7 @@ defineSuite([
             })
         });
         GeometryPipeline.splitLongitude(instance);
-        expect(instance.geometry).not.toBeDefined();
+        expect(instance.geometry).toBeUndefined();
 
         expect(instance.westHemisphereGeometry).toBeDefined();
         expect(instance.westHemisphereGeometry.indices).toBeDefined();

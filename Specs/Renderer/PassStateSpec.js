@@ -9,8 +9,8 @@ defineSuite([
         var context = {};
         var passState = new PassState(context);
         expect(passState.context).toBe(context);
-        expect(passState.framebuffer).not.toBeDefined();
-        expect(passState.blendingEnabled).not.toBeDefined();
-        expect(passState.scissorTest).not.toBeDefined();
+        expect(passState.framebuffer).toBeUndefined();
+        expect(passState.blendingEnabled).toBeUndefined();
+        expect(passState.scissorTest).toBeUndefined();
     });
 });

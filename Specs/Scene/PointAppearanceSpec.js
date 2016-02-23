@@ -68,7 +68,7 @@ defineSuite([
         expect(a.vertexShaderSource).toBeDefined();
         expect(a.fragmentShaderSource).toBeDefined();
         expect(a.renderState).toEqual(Appearance.getDefaultRenderState(false, false));
-        expect(a.material).not.toBeDefined();
+        expect(a.material).toBeUndefined();
         expect(a.translucent).toEqual(false);
         expect(a.closed).toEqual(false);
         expect(a.vertexFormat).toEqual(VertexFormat.POSITION_AND_COLOR);

@@ -65,7 +65,7 @@ defineSuite([
         expect(p.positions.length).toEqual(0);
         expect(p.width).toEqual(1.0);
         expect(p.material.uniforms.color).toEqual(new Color(1.0, 1.0, 1.0, 1.0));
-        expect(p.id).not.toBeDefined();
+        expect(p.id).toBeUndefined();
         expect(p.loop).toEqual(false);
     });
 

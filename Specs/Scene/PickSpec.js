@@ -115,7 +115,7 @@ defineSuite([
         rectangle.show = false;
 
         var pickedObject = scene.pick(new Cartesian2(0, 0));
-        expect(pickedObject).not.toBeDefined();
+        expect(pickedObject).toBeUndefined();
     });
 
     it('does not pick primitives when alpha is zero', function() {
@@ -123,7 +123,7 @@ defineSuite([
         rectangle.appearance.material.uniforms.color.alpha = 0.0;
 
         var pickedObject = scene.pick(new Cartesian2(0, 0));
-        expect(pickedObject).not.toBeDefined();
+        expect(pickedObject).toBeUndefined();
     });
 
     it('picks the top primitive', function() {

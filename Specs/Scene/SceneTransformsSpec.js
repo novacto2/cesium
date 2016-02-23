@@ -89,7 +89,7 @@ defineSuite([
         scene.renderForSpecs();
 
         var windowCoordinates = SceneTransforms.wgs84ToWindowCoordinates(scene, position);
-        expect(windowCoordinates).not.toBeDefined();
+        expect(windowCoordinates).toBeUndefined();
     });
 
     it('returns undefined for drawing buffer position behind camera in 3D', function() {
@@ -102,7 +102,7 @@ defineSuite([
         scene.renderForSpecs();
 
         var drawingBufferCoordinates = SceneTransforms.wgs84ToDrawingBufferCoordinates(scene, position);
-        expect(drawingBufferCoordinates).not.toBeDefined();
+        expect(drawingBufferCoordinates).toBeUndefined();
     });
 
     it('returns correct window position in ColumbusView', function() {
@@ -140,7 +140,7 @@ defineSuite([
         Cartesian3.multiplyByScalar(scene.camera.direction, -1, scene.camera.direction);
 
         var windowCoordinates = SceneTransforms.wgs84ToWindowCoordinates(scene, position);
-        expect(windowCoordinates).not.toBeDefined();
+        expect(windowCoordinates).toBeUndefined();
     });
 
     it('returns undefined for drawing buffer position behind camera in ColumbusView', function() {
@@ -154,7 +154,7 @@ defineSuite([
         Cartesian3.multiplyByScalar(scene.camera.direction, -1, scene.camera.direction);
 
         var drawingBufferCoordinates = SceneTransforms.wgs84ToDrawingBufferCoordinates(scene, position);
-        expect(drawingBufferCoordinates).not.toBeDefined();
+        expect(drawingBufferCoordinates).toBeUndefined();
     });
 
     it('returns correct window position in 2D', function() {

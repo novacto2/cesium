@@ -33,8 +33,10 @@ defineSuite([
         var positions = m.attributes.position.values;
         var length = positions.length;
 
-        expect(positions.length).toEqual(9 * 3);
-        expect(m.indices.length).toEqual(8 * 3);
+        var numVertices = 9;
+        var numTriangles = 8;
+        expect(positions.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numTriangles * 3);
 
         var expectedNWCorner = Ellipsoid.WGS84.cartographicToCartesian(Rectangle.northwest(rectangle));
         var expectedSECorner = Ellipsoid.WGS84.cartographicToCartesian(Rectangle.southeast(rectangle));
@@ -51,8 +53,10 @@ defineSuite([
         var positions = m.attributes.position.values;
         var length = positions.length;
 
-        expect(positions.length).toEqual(9 * 3);
-        expect(m.indices.length).toEqual(8 * 3);
+        var numVertices = 9;
+        var numTriangles = 8;
+        expect(positions.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numTriangles * 3);
 
         var expectedNWCorner = Ellipsoid.WGS84.cartographicToCartesian(Rectangle.northwest(rectangle));
         var expectedSECorner = Ellipsoid.WGS84.cartographicToCartesian(Rectangle.southeast(rectangle));
@@ -66,12 +70,15 @@ defineSuite([
             rectangle : new Rectangle(-2.0, -1.0, 0.0, 1.0),
             granularity : 1.0
         }));
-        expect(m.attributes.position.values.length).toEqual(9 * 3);
-        expect(m.attributes.st.values.length).toEqual(9 * 2);
-        expect(m.attributes.normal.values.length).toEqual(9 * 3);
-        expect(m.attributes.tangent.values.length).toEqual(9 * 3);
-        expect(m.attributes.binormal.values.length).toEqual(9 * 3);
-        expect(m.indices.length).toEqual(8 * 3);
+
+        var numVertices = 9;
+        var numTriangles = 8;
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.attributes.st.values.length).toEqual(numVertices * 2);
+        expect(m.attributes.normal.values.length).toEqual(numVertices * 3);
+        expect(m.attributes.tangent.values.length).toEqual(numVertices * 3);
+        expect(m.attributes.binormal.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numTriangles * 3);
     });
 
     it('compute positions with rotation', function() {
@@ -86,8 +93,10 @@ defineSuite([
         var positions = m.attributes.position.values;
         var length = positions.length;
 
-        expect(length).toEqual(9 * 3);
-        expect(m.indices.length).toEqual(8 * 3);
+        var numVertices = 9;
+        var numTriangles = 8;
+        expect(length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numTriangles * 3);
 
         var unrotatedSECorner = Rectangle.southeast(rectangle);
         var projection = new GeographicProjection();
@@ -109,8 +118,10 @@ defineSuite([
         var positions = m.attributes.position.values;
         var length = positions.length;
 
-        expect(length).toEqual(9 * 3);
-        expect(m.indices.length).toEqual(8 * 3);
+        var numVertices = 9;
+        var numTriangles = 8;
+        expect(length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numTriangles * 3);
 
         var unrotatedNWCorner = Ellipsoid.WGS84.cartographicToCartesian(Rectangle.northwest(rectangle));
         var unrotatedSECorner = Ellipsoid.WGS84.cartographicToCartesian(Rectangle.southeast(rectangle));
@@ -135,9 +146,11 @@ defineSuite([
         var st = m.attributes.st.values;
         var length = st.length;
 
-        expect(positions.length).toEqual(9 * 3);
-        expect(length).toEqual(9 * 2);
-        expect(m.indices.length).toEqual(8 * 3);
+        var numVertices = 9;
+        var numTriangles = 8;
+        expect(positions.length).toEqual(numVertices * 3);
+        expect(length).toEqual(numVertices * 2);
+        expect(m.indices.length).toEqual(numTriangles * 3);
 
         expect(st[length - 2]).toEqualEpsilon(0.0, CesiumMath.EPSILON14);
         expect(st[length - 1]).toEqualEpsilon(0.0, CesiumMath.EPSILON14);
@@ -176,8 +189,10 @@ defineSuite([
         }));
         var positions = m.attributes.position.values;
 
-        expect(positions.length).toEqual((9 + 8 + 4) * 3 * 2);
-        expect(m.indices.length).toEqual((8 * 2 + 4 * 4) * 3);
+        var numVertices = 42; // 9 pos + 8 duplicates around edge + 4 duplicates for corners * 2 for bottom layer
+        var numTriangles = 32; // 8 * 2 for top and bottom + 4 on each of the 4 walls
+        expect(positions.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numTriangles * 3);
     });
 
     it('computes all attributes extruded', function() {
@@ -187,12 +202,15 @@ defineSuite([
             granularity : 1.0,
             extrudedHeight : 2
         }));
-        expect(m.attributes.position.values.length).toEqual((9 + 8 + 4) * 3 * 2);
-        expect(m.attributes.st.values.length).toEqual((9 + 8 + 4) * 2 * 2);
-        expect(m.attributes.normal.values.length).toEqual((9 + 8 + 4) * 3 * 2);
-        expect(m.attributes.tangent.values.length).toEqual((9 + 8 + 4) * 3 * 2);
-        expect(m.attributes.binormal.values.length).toEqual((9 + 8 + 4) * 3 * 2);
-        expect(m.indices.length).toEqual((8 * 2 + 4 * 4) * 3);
+
+        var numVertices = 42; // 9 pos + 8 duplicates around edge + 4 duplicates for corners * 2 for bottom layer
+        var numTriangles = 32; // 8 * 2 for top and bottom + 4 on each of the 4 walls
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.attributes.st.values.length).toEqual(numVertices * 2);
+        expect(m.attributes.normal.values.length).toEqual(numVertices * 3);
+        expect(m.attributes.tangent.values.length).toEqual(numVertices * 3);
+        expect(m.attributes.binormal.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numTriangles * 3);
     });
 
     it('compute positions with rotation extruded', function() {
@@ -208,8 +226,10 @@ defineSuite([
         var positions = m.attributes.position.values;
         var length = positions.length;
 
-        expect(length).toEqual((9 + 8 + 4) * 3 * 2);
-        expect(m.indices.length).toEqual((8 * 2 + 4 * 4) * 3);
+        var numVertices = 42; // 9 pos + 8 duplicates around edge + 4 duplicates for corners * 2 for bottom layer
+        var numTriangles = 32; // 8 * 2 for top and bottom + 4 on each of the 4 walls
+        expect(length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numTriangles * 3);
 
         var unrotatedSECorner = Rectangle.southeast(rectangle);
         var projection = new GeographicProjection();
@@ -231,8 +251,10 @@ defineSuite([
         }));
         var positions = m.attributes.position.values;
 
-        expect(positions.length).toEqual(9 * 3);
-        expect(m.indices.length).toEqual(8 * 3);
+        var numVertices = 9;
+        var numTriangles = 8;
+        expect(positions.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numTriangles * 3);
     });
 
     it('undefined is returned if any side are of length zero', function() {

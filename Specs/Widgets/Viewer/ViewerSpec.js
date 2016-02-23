@@ -480,21 +480,21 @@ defineSuite([
         viewer = createViewer(container, {
             globe : false
         });
-        expect(viewer.scene.globe).not.toBeDefined();
+        expect(viewer.scene.globe).toBeUndefined();
     });
 
     it('does not create a skyBox if option is false', function() {
         viewer = createViewer(container, {
             skyBox : false
         });
-        expect(viewer.scene.skyBox).not.toBeDefined();
+        expect(viewer.scene.skyBox).toBeUndefined();
     });
 
     it('does not create a skyAtmosphere if option is false', function() {
         viewer = createViewer(container, {
             skyAtmosphere : false
         });
-        expect(viewer.scene.skyAtmosphere).not.toBeDefined();
+        expect(viewer.scene.skyAtmosphere).toBeUndefined();
     });
 
     it('can set dataSources at construction', function() {
@@ -698,7 +698,7 @@ defineSuite([
 
         // Because of the above Viewer option, data sources are not automatically
         // selected for clock tracking.
-        expect(viewer.clockTrackedDataSource).not.toBeDefined();
+        expect(viewer.clockTrackedDataSource).toBeUndefined();
         // The mock data source time is in the past, so will not be the default time.
         expect(viewer.clock.startTime).not.toEqual(dataSource1.clock.startTime);
 
@@ -721,7 +721,7 @@ defineSuite([
         // Removing the tracked data source in manual mode turns off tracking, even
         // if other data sources remain available for tracking.
         viewer.dataSources.remove(dataSource1);
-        expect(viewer.clockTrackedDataSource).not.toBeDefined();
+        expect(viewer.clockTrackedDataSource).toBeUndefined();
     });
 
     it('shows the error panel when render throws', function() {
