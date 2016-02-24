@@ -48,8 +48,10 @@ defineSuite([
             width : 30000
         }));
 
-        expect(m.attributes.position.values.length).toEqual(3 * 12);
-        expect(m.indices.length).toEqual(2 * 12);
+        var numVertices = 12; // left and right for 6 positions
+        var numLines = 12;
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numLines * 2);
     });
 
     it('computes positions extruded', function() {
@@ -63,8 +65,10 @@ defineSuite([
             extrudedHeight: 30000
         }));
 
-        expect(m.attributes.position.values.length).toEqual(3 * 24);
-        expect(m.indices.length).toEqual(2 * 12 * 2 + 8);
+        var numVertices = 24; // (left and right for 6 positions) duplicated
+        var numLines = 28; //24 to trace top and bottom + 4 vertical lines on corners
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numLines * 2);
     });
 
     it('computes right turn', function() {
@@ -78,8 +82,10 @@ defineSuite([
             width : 30000
         }));
 
-        expect(m.attributes.position.values.length).toEqual(3 * 8);
-        expect(m.indices.length).toEqual(2 * 8);
+        var numVertices = 8; // left and right for 4 positions
+        var numLines = 8;
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numLines * 2);
     });
 
     it('computes left turn', function() {
@@ -93,8 +99,10 @@ defineSuite([
             width : 30000
         }));
 
-        expect(m.attributes.position.values.length).toEqual(3 * 8);
-        expect(m.indices.length).toEqual(2 * 8);
+        var numVertices = 8; // left and right for 4 positions
+        var numLines = 8;
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numLines * 2);
     });
 
     it('computes with rounded corners', function() {
@@ -111,6 +119,7 @@ defineSuite([
 
         var endCaps = 180/5*2;
         var corners = 90/5*2;
+        var numVertices = 11 + endCaps + corners; //TODO: there's no way this should be 11
         expect(m.attributes.position.values.length).toEqual(3 * (11 + endCaps + corners));
         expect(m.indices.length).toEqual(2 * (11 + endCaps + corners));
     });

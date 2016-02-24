@@ -49,8 +49,10 @@ defineSuite([
             slices: 3
         }));
 
-        expect(m.attributes.position.values.length).toEqual(3 * 3 * 2);
-        expect(m.indices.length).toEqual(9 * 2);
+        var numVertices = 6; //3 top 3 bottom
+        var numLines = 9; //3 top 3 bottom 3 sides
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numLines * 2);
     });
 
     it('computes positions with no lines along the length', function() {
@@ -62,8 +64,10 @@ defineSuite([
             numberOfVerticalLines: 0
         }));
 
-        expect(m.attributes.position.values.length).toEqual(3 * 3 * 2);
-        expect(m.indices.length).toEqual(6 * 2);
+        var numVertices = 6; //3 top 3 bottom
+        var numLines = 6; //3 top 3 bottom
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numLines * 2);
     });
 
     it('undefined is returned if the length is less than or equal to zero or if ' +

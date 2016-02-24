@@ -68,8 +68,10 @@ defineSuite([
             semiMinorAxis : 1.0
         }));
 
-        expect(m.attributes.position.values.length).toEqual(3 * 8);
-        expect(m.indices.length).toEqual(2 * 8);
+        var numVertices = 8;
+        var numLines = 8;
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numLines * 2);
         expect(m.boundingSphere.radius).toEqual(1);
     });
 
@@ -83,8 +85,10 @@ defineSuite([
             extrudedHeight : 50000
         }));
 
-        expect(m.attributes.position.values.length).toEqual(3 * 8 * 2);
-        expect(m.indices.length).toEqual(2 * 8 * 2 + 16 * 2);
+        var numVertices = 16; //8 top and bottom
+        var numLines = 32; //8 top and bottom + 16 sides
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numLines * 2);
     });
 
     it('computes positions extruded, no lines drawn between top and bottom', function() {
@@ -98,8 +102,10 @@ defineSuite([
             numberOfVerticalLines : 0
         }));
 
-        expect(m.attributes.position.values.length).toEqual(3 * 8 * 2);
-        expect(m.indices.length).toEqual(2 * 8 * 2);
+        var numVertices = 16; //8 top and bottom
+        var numLines = 16; //8 top and bottom
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numLines * 2);
     });
 
     it('undefined is returned if the minor axis is equal to or less than zero', function() {

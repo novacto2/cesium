@@ -80,9 +80,11 @@ defineSuite([
             granularity : Math.PI
         }));
 
+        var numVertices = 4;
+        var numLines = 4;
         var positions = w.attributes.position.values;
-        expect(positions.length).toEqual(2 * 2 * 3);
-        expect(w.indices.length).toEqual(4 * 2);
+        expect(positions.length).toEqual(numVertices * 3);
+        expect(w.indices.length).toEqual(numLines * 2);
 
         var cartographic = ellipsoid.cartesianToCartographic(Cartesian3.fromArray(positions, 0));
         expect(cartographic.height).toEqualEpsilon(0.0, CesiumMath.EPSILON8);
@@ -102,9 +104,11 @@ defineSuite([
             granularity : Math.PI
         }));
 
+        var numVertices = 4;
+        var numLines = 4;
         var positions = w.attributes.position.values;
-        expect(positions.length).toEqual(2 * 2 * 3);
-        expect(w.indices.length).toEqual(4 * 2);
+        expect(positions.length).toEqual(numVertices * 3);
+        expect(w.indices.length).toEqual(numLines * 2);
 
         var cartographic = ellipsoid.cartesianToCartographic(Cartesian3.fromArray(positions, 0));
         expect(cartographic.height).toEqualEpsilon(1000.0, CesiumMath.EPSILON8);
@@ -132,9 +136,11 @@ defineSuite([
             ])
         }));
 
+        var numVertices = 6;
+        var numLines = 7; //3 vertical, 4 horizontal
         var positions = w.attributes.position.values;
-        expect(positions.length).toEqual(3 * 2 * 3);
-        expect(w.indices.length).toEqual(7 * 2);
+        expect(positions.length).toEqual(numVertices * 3);
+        expect(w.indices.length).toEqual(numLines * 2);
 
         var cartographic = ellipsoid.cartesianToCartographic(Cartesian3.fromArray(positions, 0));
         expect(cartographic.height).toEqualEpsilon(0.0, CesiumMath.EPSILON8);
@@ -162,9 +168,11 @@ defineSuite([
             maximumHeight : max
         }));
 
+        var numVertices = 4;
+        var numLines = 4;
         var positions = w.attributes.position.values;
-        expect(positions.length).toEqual(2 * 2 * 3);
-        expect(w.indices.length).toEqual(2 * 4);
+        expect(positions.length).toEqual(numVertices * 3);
+        expect(w.indices.length).toEqual(numLines * 2);
 
         var cartographic = ellipsoid.cartesianToCartographic(Cartesian3.fromArray(positions, 0));
         expect(cartographic.height).toEqualEpsilon(min, CesiumMath.EPSILON8);
