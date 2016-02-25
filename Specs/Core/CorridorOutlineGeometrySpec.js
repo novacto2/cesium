@@ -120,8 +120,9 @@ defineSuite([
         var endCaps = 180/5*2;
         var corners = 90/5*2;
         var numVertices = 11 + endCaps + corners; //TODO: there's no way this should be 11
-        expect(m.attributes.position.values.length).toEqual(3 * (11 + endCaps + corners));
-        expect(m.indices.length).toEqual(2 * (11 + endCaps + corners));
+        var numLines = 11 + endCaps + corners;
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numLines * 2);
     });
 
     it('computes with beveled corners', function() {
@@ -136,8 +137,10 @@ defineSuite([
             width : 30000
         }));
 
-        expect(m.attributes.position.values.length).toEqual(3 * 10);
-        expect(m.indices.length).toEqual(2 * 10);
+        var numVertices = 10;
+        var numLines = 10
+        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
+        expect(m.indices.length).toEqual(numLines * 2);
     });
 
     it('undefined is returned if there are less than two positions or the width is equal to ' +
