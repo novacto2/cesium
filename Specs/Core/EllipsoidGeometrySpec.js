@@ -37,7 +37,7 @@ defineSuite([
         }));
 
         var numVertices = 16;
-        var numTriangles = 18;
+        var numTriangles = 12; //3 top 3 bottom 6 around the sides
         expect(m.attributes.position.values.length).toEqual(numVertices * 3);
         expect(m.indices.length).toEqual(numTriangles * 3);
         expect(m.boundingSphere.radius).toEqual(1);
@@ -51,7 +51,7 @@ defineSuite([
         }));
 
         var numVertices = 16;
-        var numTriangles = 18;
+        var numTriangles = 12;
         expect(m.attributes.position.values.length).toEqual(numVertices * 3);
         expect(m.attributes.st.values.length).toEqual(numVertices * 2);
         expect(m.attributes.normal.values.length).toEqual(numVertices * 3);
