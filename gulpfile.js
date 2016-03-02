@@ -279,42 +279,24 @@ gulp.task('minifyRelease', ['generateStubs'], function() {
 gulp.task('release', ['combine', 'minifyRelease', 'generateDocumentation']);
 
 gulp.task('coverage', function(done) {
-    var enableAllBrowsers = false;
-    var includeCategory = '';
-    var excludeCategory = '';
-    var webglValidation = false;
-    var release = false;
-
-    var files = [
-        'Specs/karma-main.js',
-        {pattern: 'Source/**', included: false},
-        {pattern: 'Specs/**', included: false}
-    ];
-
     karma.start({
-                    configFile: karmaConfigFile,
-                    coverageReporter: {
-                        instrumenterOptions: {
-                            istanbul: { noCompact: true }
-                        }
-                    },
+                    configFile : karmaConfigFile,
                     browserDisconnectTolerance : 5,
                     browserNoActivityTimeout : 5 * 60 * 1000,
                     browserDisconnectTimeout : 5 * 60 * 1000,
-                    preprocessors: {
-                        'Source/**/*.js': ['coverage']
+                    preprocessors : {
+                        'Source/**/*.js' : ['coverage']
                     },
-                    reporters: ['dots', 'coverage'],
+                    reporters : ['spec', 'coverage'],
                     detectBrowsers : {
-                        enabled: enableAllBrowsers
+                        enabled : false
                     },
-                    files: files,
-                    client: {
-                        args: [includeCategory, excludeCategory, webglValidation, release]
-                    }
-                }, function() {
-        return done();
-    });
+                    files : [
+                        'Specs/karma-main.js',
+                        {pattern : 'Source/**', included : false},
+                        {pattern : 'Specs/**', included : false}
+                    ]
+                }, done);
 });
 
 gulp.task('test', function(done) {
