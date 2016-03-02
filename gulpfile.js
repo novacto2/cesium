@@ -281,9 +281,8 @@ gulp.task('release', ['combine', 'minifyRelease', 'generateDocumentation']);
 gulp.task('coverage', function(done) {
     karma.start({
                     configFile : karmaConfigFile,
-                    browserDisconnectTolerance : 5,
                     browserNoActivityTimeout : 5 * 60 * 1000,
-                    browserDisconnectTimeout : 5 * 60 * 1000,
+                    browsers: ['Electron'],
                     preprocessors : {
                         'Source/**/*.js' : ['coverage']
                     },
