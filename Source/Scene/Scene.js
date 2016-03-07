@@ -1191,7 +1191,7 @@ define([
         overlayList.length = 0;
 
         var near = Number.MAX_VALUE;
-        var far = Number.MIN_VALUE;
+        var far = -Number.MAX_VALUE;
         var undefBV = false;
 
         var occluder = (frameState.mode === SceneMode.SCENE3D) ? frameState.occluder: undefined;
@@ -1242,6 +1242,9 @@ define([
             }
         }
 
+        console.log(near, far);
+        //console.log(direction);
+
         if (undefBV) {
             near = camera.frustum.near;
             far = camera.frustum.far;
@@ -1252,6 +1255,10 @@ define([
             near = Math.min(Math.max(near, camera.frustum.near), camera.frustum.far);
             far = Math.max(Math.min(far, camera.frustum.far), near);
         }
+
+        // Use the computed near and far for shadows
+        frameState.shadowNear = near;
+        frameState.shadowFar = far;
 
         // Exploit temporal coherence. If the frustums haven't changed much, use the frustums computed
         // last frame, else compute the new frustums and sort them by frustum again.
@@ -1658,15 +1665,17 @@ define([
     function getShadowMapCommands(scene) {
         // TODO : temporary solution for testing
         var shadowMapCommands = [];
-        var frustumCommands = scene._frustumCommandsList[0];
-        if (defined(frustumCommands)) {
+        var frustumCommandsList = scene._frustumCommandsList;
+        var numFrustums = frustumCommandsList.length;
+        for (var i = 0; i < numFrustums; ++i) {
+            var frustumCommands = frustumCommandsList[i];
             var startPass = Pass.GLOBE;
             var endPass = Pass.TRANSLUCENT;
             for (var pass = startPass; pass <= endPass; ++pass) {
                 var commands = frustumCommands.commands[pass];
                 var length = frustumCommands.indices[pass];
-                for (var i = 0; i < length; ++i) {
-                    var command = commands[i];
+                for (var j = 0; j < length; ++j) {
+                    var command = commands[j];
                     if (command.castShadows) {
                         shadowMapCommands.push(command);
                     }

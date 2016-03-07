@@ -19,6 +19,9 @@
 <body class="sandcastle-loading" data-sandcastle-bucket="bucket-requirejs.html">
 <style>
     @import url(../templates/bucket.css);
+    #toolbar input[type=range] {
+        width : 70px;
+    }
     #toolbar input {
         vertical-align: middle;
         padding-top: 2px;
@@ -67,6 +70,10 @@
             <td><input type="checkbox" data-bind="checked: shadows"/></td>
         </tr>
         <tr>
+            <td>Terrain Cast</td>
+            <td><input type="checkbox" data-bind="checked: terrainCast"/></td>
+        </tr>
+        <tr>
             <td>Show debug</td>
             <td><input type="checkbox" data-bind="checked: debug"/></td>
         </tr>
@@ -77,6 +84,10 @@
         <tr>
             <td>Cascade colors</td>
             <td><input type="checkbox" data-bind="checked: cascadeColors"/></td>
+        </tr>
+        <tr>
+            <td>Fit near/far</td>
+            <td><input type="checkbox" data-bind="checked: fitNearFar"/></td>
         </tr>
     </tbody></table>
 </div>
@@ -90,9 +101,11 @@ var viewModel = {
     lightHorizon : 0.0,
     shadowFar : 1000.0,
     shadows : true,
+    terrainCast : false,
     debug : true,
     freeze : false,
     cascadeColors : false,
+    fitNearFar : true,
     shadowModeOptions : ['Cascades', 'Single'],
     shadowMode : 'Cascades',
     lightSourceOptions : ['Freeform', 'Sun', 'Fixed'],
@@ -100,6 +113,11 @@ var viewModel = {
     sizeOptions : [256, 512, 1024, 2048],
     size : 1024
 };
+
+viewModel.lightAngle = 224;
+viewModel.lightHorizon = 80;
+viewModel.shadowFar = 10000.0;
+viewModel.cascadeColors = false;
 
 Cesium.knockout.track(viewModel);
 var toolbar = document.getElementById('toolbar');
@@ -110,6 +128,8 @@ Cesium.knockout.getObservable(viewModel, 'shadowFar').subscribe(updateSettings);
 Cesium.knockout.getObservable(viewModel, 'debug').subscribe(updateSettings);
 Cesium.knockout.getObservable(viewModel, 'freeze').subscribe(updateSettings);
 Cesium.knockout.getObservable(viewModel, 'shadows').subscribe(updateSettings);
+Cesium.knockout.getObservable(viewModel, 'terrainCast').subscribe(updateSettings);
+Cesium.knockout.getObservable(viewModel, 'fitNearFar').subscribe(updateSettings);
 Cesium.knockout.getObservable(viewModel, 'cascadeColors').subscribe(updateShadows);
 Cesium.knockout.getObservable(viewModel, 'shadowMode').subscribe(updateShadows);
 Cesium.knockout.getObservable(viewModel, 'lightSource').subscribe(updateShadows);
@@ -128,9 +148,14 @@ function updateLightDirection() {
 
 function updateSettings() {
     shadowMap._farPlane = Number(viewModel.shadowFar);
+    shadowMap._fitNearFar = viewModel.fitNearFar;
     shadowMap.debugShow = viewModel.debug;
     shadowMap.debugFreezeFrame = viewModel.freeze;
     shadowMap.enabled = viewModel.shadows;
+
+    if (globeVisible) {
+        globe.castShadows = viewModel.terrainCast;
+    }
 }
 
 function updateShadows() {
@@ -216,6 +241,7 @@ var tilt = 0.0;
 var scene = viewer.scene;
 var context = scene.context;
 var camera = scene.camera;
+var globe = scene.globe;
 var shadowMap;
 var center;
 var height;
@@ -272,11 +298,11 @@ function resetShadows(shadowOptions) {
     var position3 = Cesium.Cartesian3.fromRadians(centerLongitude, centerLatitude, height + 15.0);
 
     //createModel('../../SampleData/models/CesiumAir/Cesium_Air.glb', position3);
-    createModel('../../SampleData/models/ShadowTester/Shadow_Tester.gltf', center);
-    createModel('../../SampleData/models/WoodTower/Wood_Tower.gltf', ground);
-    createBox(position3);
-    createBoxRTC(position2);
-    createSphere(position1);
+//    createModel('../../SampleData/models/ShadowTester/Shadow_Tester.gltf', center);
+//    createModel('../../SampleData/models/WoodTower/Wood_Tower.gltf', ground);
+//    createBox(position3);
+//    createBoxRTC(position2);
+//    createSphere(position1);
 }
 
 function createModel(url, origin) {

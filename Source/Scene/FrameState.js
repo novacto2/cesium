@@ -168,6 +168,8 @@ define([
         * @type {ShadowMap}
         */
         this.shadowMap = undefined;
+        this.shadowNear = 1.0;
+        this.shadowFar = 100.0;
     }
 
     /**
