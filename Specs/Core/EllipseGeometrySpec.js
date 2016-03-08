@@ -73,10 +73,8 @@ defineSuite([
             semiMinorAxis : 1.0
         }));
 
-        var numVertices = 16;
-        var numTriangles = 22;
-        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
-        expect(m.indices.length).toEqual(numTriangles * 3);
+        expect(m.attributes.position.values.length).toEqual(16 * 3); // rows of 1 + 4 + 6 + 4 + 1
+        expect(m.indices.length).toEqual(22 * 3); // rows of 3 + 8 + 8 + 3
         expect(m.boundingSphere.radius).toEqual(1);
     });
 
@@ -136,8 +134,8 @@ defineSuite([
             extrudedHeight : 50000
         }));
 
-        var numVertices = 48; //(16 fill + 8 edges) duplicated for top and bottom
-        var numTriangles = 60; //22 top and bottom + 2 on each of 8 sides
+        var numVertices = 48; // 16 top + 16 bottom + 8 top edge + 8 bottom edge
+        var numTriangles = 60; // 22 top fill + 22 bottom fill + 2 triangles * 8 sides
         expect(m.attributes.position.values.length).toEqual(numVertices * 3);
         expect(m.indices.length).toEqual(numTriangles * 3);
     });
@@ -153,8 +151,8 @@ defineSuite([
             extrudedHeight : 50000
         }));
 
-        var numVertices = 48; //(16 fill + 8 edges) duplicated for top and bottom
-        var numTriangles = 60; //22 top and bottom + 2 on each of 8 sides
+        var numVertices = 48;
+        var numTriangles = 60;
         expect(m.attributes.position.values.length).toEqual(numVertices * 3);
         expect(m.attributes.st.values.length).toEqual(numVertices * 2);
         expect(m.attributes.normal.values.length).toEqual(numVertices * 3);

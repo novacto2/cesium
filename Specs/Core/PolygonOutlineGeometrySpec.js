@@ -146,10 +146,8 @@ defineSuite([
             granularity : CesiumMath.PI_OVER_THREE
         }));
 
-        var numVertices = 12;
-        var numLines = 12;
-        expect(p.attributes.position.values.length).toEqual(numVertices * 3);
-        expect(p.indices.length).toEqual(numLines * 2);
+        expect(p.attributes.position.values.length).toEqual(12 * 3); // 4 corners * 3 rectangles
+        expect(p.indices.length).toEqual(12 * 2);
     });
 
     it('creates a polygon from clockwise hierarchy', function() {
@@ -183,10 +181,8 @@ defineSuite([
             granularity : CesiumMath.PI_OVER_THREE
         }));
 
-        var numVertices = 12;
-        var numLines = 12;
-        expect(p.attributes.position.values.length).toEqual(numVertices * 3);
-        expect(p.indices.length).toEqual(numLines * 2);
+        expect(p.attributes.position.values.length).toEqual(12 * 3);
+        expect(p.indices.length).toEqual(12 * 2);
     });
 
     it('doesn\'t reverse clockwise input array', function() {
@@ -293,10 +289,8 @@ defineSuite([
             extrudedHeight: 30000
         }));
 
-        var numVertices = 16; //8 on top and bottom
-        var numLines = 20; //8 lines on top and bottom + 4 edge lines
-        expect(p.attributes.position.values.length).toEqual(numVertices * 3);
-        expect(p.indices.length).toEqual(numLines * 2);
+        expect(p.attributes.position.values.length).toEqual(16 * 3); // 8 top + 8 bottom
+        expect(p.indices.length).toEqual(20 * 2); // 8 top + 8 bottom + 4 edges
     });
 
     it('creates a polygon from hierarchy extruded', function() {
@@ -331,10 +325,8 @@ defineSuite([
             extrudedHeight: 30000
         }));
 
-        var numVertices = 24; //12 on top and bottom
-        var numLines = 36; //12 on top and bottom + 12 edges
-        expect(p.attributes.position.values.length).toEqual(numVertices * 3);
-        expect(p.indices.length).toEqual(numLines * 2);
+        expect(p.attributes.position.values.length).toEqual(24 * 3); // 12 top + 12 bottom
+        expect(p.indices.length).toEqual(36 * 2); // 12 top + 12 bottom + 12 edges
     });
 
     it('undefined is returned if there are less than 3 positions', function() {

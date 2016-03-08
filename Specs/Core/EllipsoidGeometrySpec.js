@@ -36,8 +36,8 @@ defineSuite([
             stackPartitions: 3
         }));
 
-        var numVertices = 16;
-        var numTriangles = 12; //3 top 3 bottom 6 around the sides
+        var numVertices = 16; // 4 rows * 4 positions
+        var numTriangles = 12; //3 top + 3 bottom + 6 around the sides
         expect(m.attributes.position.values.length).toEqual(numVertices * 3);
         expect(m.indices.length).toEqual(numTriangles * 3);
         expect(m.boundingSphere.radius).toEqual(1);

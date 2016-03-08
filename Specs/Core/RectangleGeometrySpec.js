@@ -70,9 +70,8 @@ defineSuite([
             rectangle : new Rectangle(-2.0, -1.0, 0.0, 1.0),
             granularity : 1.0
         }));
-
-        var numVertices = 9;
-        var numTriangles = 8;
+        var numVertices = 9; // 8 around edge + 1 in middle
+        var numTriangles = 8; // 4 squares * 2 triangles per square
         expect(m.attributes.position.values.length).toEqual(numVertices * 3);
         expect(m.attributes.st.values.length).toEqual(numVertices * 2);
         expect(m.attributes.normal.values.length).toEqual(numVertices * 3);
@@ -189,10 +188,8 @@ defineSuite([
         }));
         var positions = m.attributes.position.values;
 
-        var numVertices = 42; // 9 pos + 8 duplicates around edge + 4 duplicates for corners * 2 for bottom layer
-        var numTriangles = 32; // 8 * 2 for top and bottom + 4 on each of the 4 walls
-        expect(positions.length).toEqual(numVertices * 3);
-        expect(m.indices.length).toEqual(numTriangles * 3);
+        expect(positions.length).toEqual(42 * 3); // (9 fill + 8 edge + 4 corners) * 2 to duplicate for bottom
+        expect(m.indices.length).toEqual(32 * 3); // 8 * 2 for fill top and bottom + 4 triangles * 4 walls
     });
 
     it('computes all attributes extruded', function() {
@@ -202,9 +199,8 @@ defineSuite([
             granularity : 1.0,
             extrudedHeight : 2
         }));
-
-        var numVertices = 42; // 9 pos + 8 duplicates around edge + 4 duplicates for corners * 2 for bottom layer
-        var numTriangles = 32; // 8 * 2 for top and bottom + 4 on each of the 4 walls
+        var numVertices = 42;
+        var numTriangles = 32;
         expect(m.attributes.position.values.length).toEqual(numVertices * 3);
         expect(m.attributes.st.values.length).toEqual(numVertices * 2);
         expect(m.attributes.normal.values.length).toEqual(numVertices * 3);
@@ -226,10 +222,8 @@ defineSuite([
         var positions = m.attributes.position.values;
         var length = positions.length;
 
-        var numVertices = 42; // 9 pos + 8 duplicates around edge + 4 duplicates for corners * 2 for bottom layer
-        var numTriangles = 32; // 8 * 2 for top and bottom + 4 on each of the 4 walls
-        expect(length).toEqual(numVertices * 3);
-        expect(m.indices.length).toEqual(numTriangles * 3);
+        expect(length).toEqual(42 * 3);
+        expect(m.indices.length).toEqual(32 * 3);
 
         var unrotatedSECorner = Rectangle.southeast(rectangle);
         var projection = new GeographicProjection();

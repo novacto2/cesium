@@ -37,10 +37,8 @@ defineSuite([
             slicePartitions: 3
         }));
 
-        var numVertices = 16;
-        var numTriangles = 12; //3 top 3 bottom 6 around the sides
-        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
-        expect(m.indices.length).toEqual(numTriangles * 3);
+        expect(m.attributes.position.values.length).toEqual(16 * 3); // 4 positions * 4 rows
+        expect(m.indices.length).toEqual(12 * 3); //3 top + 3 bottom + 2 triangles * 3 sides
         expect(m.boundingSphere.radius).toEqual(1);
     });
 

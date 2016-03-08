@@ -48,10 +48,8 @@ defineSuite([
             width : 30000
         }));
 
-        var numVertices = 12; // left and right for 6 positions
-        var numLines = 12;
-        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
-        expect(m.indices.length).toEqual(numLines * 2);
+        expect(m.attributes.position.values.length).toEqual(12 * 3); // 6 left + 6 right
+        expect(m.indices.length).toEqual(12 * 2);
     });
 
     it('computes positions extruded', function() {
@@ -65,10 +63,8 @@ defineSuite([
             extrudedHeight: 30000
         }));
 
-        var numVertices = 24; // (left and right for 6 positions) duplicated
-        var numLines = 28; //24 to trace top and bottom + 4 vertical lines on corners
-        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
-        expect(m.indices.length).toEqual(numLines * 2);
+        expect(m.attributes.position.values.length).toEqual(24 * 3); // 6 positions * 4 for a box at each position
+        expect(m.indices.length).toEqual(28 * 2);
     });
 
     it('computes right turn', function() {
@@ -82,10 +78,8 @@ defineSuite([
             width : 30000
         }));
 
-        var numVertices = 8; // left and right for 4 positions
-        var numLines = 8;
-        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
-        expect(m.indices.length).toEqual(numLines * 2);
+        expect(m.attributes.position.values.length).toEqual(8 * 3);
+        expect(m.indices.length).toEqual(8 * 2);
     });
 
     it('computes left turn', function() {
@@ -99,10 +93,8 @@ defineSuite([
             width : 30000
         }));
 
-        var numVertices = 8; // left and right for 4 positions
-        var numLines = 8;
-        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
-        expect(m.indices.length).toEqual(numLines * 2);
+        expect(m.attributes.position.values.length).toEqual(8 * 3);
+        expect(m.indices.length).toEqual(8 * 2);
     });
 
     it('computes with rounded corners', function() {
@@ -117,10 +109,10 @@ defineSuite([
             width : 30000
         }));
 
-        var endCaps = 180/5*2;
-        var corners = 90/5*2;
-        var numVertices = 11 + endCaps + corners; //TODO: there's no way this should be 11
-        var numLines = 11 + endCaps + corners;
+        var endCaps = 72; // 36 points * 2 end caps
+        var corners = 37; // 18 for one corner + 19 for the other
+        var numVertices = 10 + endCaps + corners;
+        var numLines = 10 + endCaps + corners;
         expect(m.attributes.position.values.length).toEqual(numVertices * 3);
         expect(m.indices.length).toEqual(numLines * 2);
     });
@@ -137,10 +129,8 @@ defineSuite([
             width : 30000
         }));
 
-        var numVertices = 10;
-        var numLines = 10
-        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
-        expect(m.indices.length).toEqual(numLines * 2);
+        expect(m.attributes.position.values.length).toEqual(10 * 3);
+        expect(m.indices.length).toEqual(10 * 2);
     });
 
     it('undefined is returned if there are less than two positions or the width is equal to ' +

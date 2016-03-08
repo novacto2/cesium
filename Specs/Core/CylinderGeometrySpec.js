@@ -52,8 +52,8 @@ defineSuite([
             slices: 3
         }));
 
-        var numVertices = 12; //(3 top 3 bottom) duplicated
-        var numTriangles = 8; //1 top 1 bottom, 2 on each of 3 sides
+        var numVertices = 12; // (3 top + 3 bottom) * 2 to duplicate for sides
+        var numTriangles = 8; // 1 top  + 1 bottom + 2 triangles * 3 sides
         expect(m.attributes.position.values.length).toEqual(numVertices * 3);
         expect(m.indices.length).toEqual(numTriangles * 3);
     });
@@ -67,8 +67,8 @@ defineSuite([
             slices: 3
         }));
 
-        var numVertices = 12; //(3 top 3 bottom) duplicated
-        var numTriangles = 8; //1 top 1 bottom, 2 on each of 3 sides
+        var numVertices = 12;
+        var numTriangles = 8;
         expect(m.attributes.position.values.length).toEqual(numVertices * 3);
         expect(m.attributes.st.values.length).toEqual(numVertices * 2);
         expect(m.attributes.normal.values.length).toEqual(numVertices * 3);

@@ -68,10 +68,8 @@ defineSuite([
             semiMinorAxis : 1.0
         }));
 
-        var numVertices = 8;
-        var numLines = 8;
-        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
-        expect(m.indices.length).toEqual(numLines * 2);
+        expect(m.attributes.position.values.length).toEqual(8 * 3);
+        expect(m.indices.length).toEqual(8 * 2);
         expect(m.boundingSphere.radius).toEqual(1);
     });
 
@@ -82,13 +80,11 @@ defineSuite([
             granularity : 0.1,
             semiMajorAxis : 1.0,
             semiMinorAxis : 1.0,
-            extrudedHeight : 50000
+            extrudedHeight : 5.0
         }));
 
-        var numVertices = 16; //8 top and bottom
-        var numLines = 32; //8 top and bottom + 16 sides
-        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
-        expect(m.indices.length).toEqual(numLines * 2);
+        expect(m.attributes.position.values.length).toEqual(16 * 3); // 8 top  + 8 bottom
+        expect(m.indices.length).toEqual(numLines * 2); // 8 top + 8 bottom + 8 sides
     });
 
     it('computes positions extruded, no lines drawn between top and bottom', function() {
@@ -98,14 +94,12 @@ defineSuite([
             granularity : 0.1,
             semiMajorAxis : 1.0,
             semiMinorAxis : 1.0,
-            extrudedHeight : 50000,
+            extrudedHeight : 5.0,
             numberOfVerticalLines : 0
         }));
 
-        var numVertices = 16; //8 top and bottom
-        var numLines = 16; //8 top and bottom
-        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
-        expect(m.indices.length).toEqual(numLines * 2);
+        expect(m.attributes.position.values.length).toEqual(16 * 3);
+        expect(m.indices.length).toEqual(16 * 2);
     });
 
     it('undefined is returned if the minor axis is equal to or less than zero', function() {

@@ -51,8 +51,8 @@ defineSuite([
             width : 30000
         }));
 
-        var numVertices = 12; //6 positions left and right
-        var numTriangles = 10; //5 square chucks
+        var numVertices = 12; //6 left + 6 right
+        var numTriangles = 10; //5 segments x 2 triangles per segment
         expect(m.attributes.position.values.length).toEqual(numVertices * 3);
         expect(m.indices.length).toEqual(numTriangles * 3);
     });
@@ -68,8 +68,8 @@ defineSuite([
             width : 30000
         }));
 
-        var numVertices = 12; //6 positions left and right
-        var numTriangles = 10; //5 square chucks
+        var numVertices = 12;
+        var numTriangles = 10;
         expect(m.attributes.position.values.length).toEqual(numVertices * 3);
         expect(m.attributes.st.values.length).toEqual(numVertices * 2);
         expect(m.attributes.normal.values.length).toEqual(numVertices * 3);
@@ -90,8 +90,8 @@ defineSuite([
             extrudedHeight: 30000
         }));
 
-        var numVertices = 72; //12 top 12 bottom 12 left 12 right 4 end 4 end + 16 mystery points
-        var numTriangles = 44; // 10 top 10 bottom 10 left 10 right 4 end 4 end
+        var numVertices = 72; // 6 positions x 4 for a box at each position x 3 to duplicate for normals
+        var numTriangles = 44; // 5 segments * 8 triangles per segment + 2 triangles x 2 ends
         expect(m.attributes.position.values.length).toEqual(numVertices * 3);
         expect(m.indices.length).toEqual(numTriangles * 3);
     });
@@ -108,8 +108,8 @@ defineSuite([
             extrudedHeight: 30000
         }));
 
-        var numVertices = 72; //12 top 12 bottom 12 left 12 right 4 end 4 end + 16 mystery points
-        var numTriangles = 44; // 10 top 10 bottom 10 left 10 right 4 end 4 end
+        var numVertices = 72;
+        var numTriangles = 44;
         expect(m.attributes.position.values.length).toEqual(numVertices * 3);
         expect(m.attributes.st.values.length).toEqual(numVertices * 2);
         expect(m.attributes.normal.values.length).toEqual(numVertices * 3);
@@ -130,10 +130,8 @@ defineSuite([
             width : 30000
         }));
 
-        var numVertices = 8;
-        var numTriangles = 6; //3 square segments
-        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
-        expect(m.indices.length).toEqual(numTriangles * 3);
+        expect(m.attributes.position.values.length).toEqual(8 * 3); // 4 left + 4 right
+        expect(m.indices.length).toEqual(6 * 3); // 3 segments * 2 triangles per segment
     });
 
     it('computes left turn', function() {
@@ -148,10 +146,8 @@ defineSuite([
             width : 30000
         }));
 
-        var numVertices = 8;
-        var numTriangles = 6; //3 square segments
-        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
-        expect(m.indices.length).toEqual(numTriangles * 3);
+        expect(m.attributes.position.values.length).toEqual(8 * 3);
+        expect(m.indices.length).toEqual(6 * 3);
     });
 
     it('computes with rounded corners', function() {
@@ -167,10 +163,10 @@ defineSuite([
             width : 30000
         }));
 
-        var endCaps = 180/5*2;
-        var corners = 90/5*2;
-        var numVertices = 11 + endCaps + corners; // TODO: 11? really?
-        var numTriangles = 9 + endCaps + corners;
+        var endCaps = 72; // 36 points * 2 end caps
+        var corners = 37; // 18 for one corner + 19 for the other
+        var numVertices = 10 + endCaps + corners;
+        var numTriangles = 8 + endCaps + corners;
         expect(m.attributes.position.values.length).toEqual(numVertices * 3);
         expect(m.attributes.st.values.length).toEqual(2 * (11 + endCaps + corners));
         expect(m.indices.length).toEqual(numTriangles * 3);
@@ -189,10 +185,8 @@ defineSuite([
             width : 30000
         }));
 
-        var numVertices = 10;
-        var numTriangles = 8;
-        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
-        expect(m.indices.length).toEqual(numTriangles * 3);
+        expect(m.attributes.position.values.length).toEqual(10 * 3);
+        expect(m.indices.length).toEqual(8 * 3);
     });
 
     it('computes sharp turns', function() {
@@ -209,10 +203,8 @@ defineSuite([
             width : 100
         }));
 
-        var numVertices = 13; //TODO: why are these odd?
-        var numTriangles = 11;
-        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
-        expect(m.indices.length).toEqual(numTriangles * 3);
+        expect(m.attributes.position.values.length).toEqual(13 * 3); // 3 points * 3 corners + 2 points * 2 ends
+        expect(m.indices.length).toEqual(11 * 3); // 4 segments * 2 triangles + 3 corners * 1 triangle
     });
 
     it('computes straight corridors', function() {
@@ -228,10 +220,8 @@ defineSuite([
             granularity : Math.PI / 6.0
         }));
 
-        var numVertices = 4;
-        var numTriangles = 2;
-        expect(m.attributes.position.values.length).toEqual(numVertices * 3);
-        expect(m.indices.length).toEqual(numTriangles * 3);
+        expect(m.attributes.position.values.length).toEqual(4 * 3);
+        expect(m.indices.length).toEqual(2 * 3);
     });
 
     it('undefined is returned if there are less than two positions or the width is equal to ' +

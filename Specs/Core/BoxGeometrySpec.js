@@ -36,8 +36,8 @@ defineSuite([
             vertexFormat : VertexFormat.POSITION_ONLY
         }));
 
-        expect(m.attributes.position.values.length).toEqual(8 * 3);
-        expect(m.indices.length).toEqual(12 * 3);
+        expect(m.attributes.position.values.length).toEqual(8 * 3); // 8 corners
+        expect(m.indices.length).toEqual(12 * 3); // 6 sides x 2 triangles per side
     });
 
     it('constructor computes all vertex attributes', function() {
@@ -49,8 +49,8 @@ defineSuite([
             vertexFormat : VertexFormat.ALL
         }));
 
-        var numVertices = 24; //3 for each of 8 corners
-        var numTriangles = 12; //6 sides, 2 per side
+        var numVertices = 24; //3 points x 8 corners
+        var numTriangles = 12; //6 sides x 2 triangles per side
         expect(m.attributes.position.values.length).toEqual(numVertices * 3);
         expect(m.attributes.normal.values.length).toEqual(numVertices * 3);
         expect(m.attributes.tangent.values.length).toEqual(numVertices * 3);

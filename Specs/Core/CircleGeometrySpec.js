@@ -66,8 +66,8 @@ defineSuite([
             radius : 1.0
         }));
 
-        var numVertices = 16;
-        var numTriangles = 22;
+        var numVertices = 16; //rows of 1 + 4 + 6 + 4 + 1
+        var numTriangles = 22; //rows of 3 + 8 + 8 + 3
         expect(m.attributes.position.values.length).toEqual(numVertices * 3);
         expect(m.attributes.st.values.length).toEqual(numVertices * 2);
         expect(m.attributes.normal.values.length).toEqual(numVertices * 3);
@@ -86,8 +86,8 @@ defineSuite([
             extrudedHeight: 10000
         }));
 
-        var numVertices = 48; //(16 in circle + 8 around the edge) duplicated
-        var numTriangles = 60; //22 in each circle + 16 around the edge
+        var numVertices = 48; // 16 top circle + 16 bottom circle + 8 top edge + 8 bottom edge
+        var numTriangles = 60; // 22 to fill each circle + 16 for edge wall
         expect(m.attributes.position.values.length).toEqual(numVertices * 3);
         expect(m.indices.length).toEqual(numTriangles * 3);
     });
@@ -102,8 +102,8 @@ defineSuite([
             extrudedHeight: 10000
         }));
 
-        var numVertices = 48; //(16 in circle + 8 around the edge) duplicated
-        var numTriangles = 60; //22 in each circle + 16 around the edge
+        var numVertices = 48;
+        var numTriangles = 60;
         expect(m.attributes.position.values.length).toEqual(numVertices * 3);
         expect(m.attributes.st.values.length).toEqual(numVertices * 2);
         expect(m.attributes.normal.values.length).toEqual(numVertices * 3);
