@@ -168,7 +168,7 @@ defineSuite([
         var numVertices = 10 + endCaps + corners;
         var numTriangles = 8 + endCaps + corners;
         expect(m.attributes.position.values.length).toEqual(numVertices * 3);
-        expect(m.attributes.st.values.length).toEqual(2 * (11 + endCaps + corners));
+        expect(m.attributes.st.values.length).toEqual(numVertices * 2);
         expect(m.indices.length).toEqual(numTriangles * 3);
     });
 

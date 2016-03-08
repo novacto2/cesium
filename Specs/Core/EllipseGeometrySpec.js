@@ -116,7 +116,7 @@ defineSuite([
         var numVertices = 16;
         var numTriangles = 22;
         expect(positions.length).toEqual(numVertices * 3);
-        expect(length).toEqual(numVertices * 1);
+        expect(length).toEqual(numVertices * 2);
         expect(m.indices.length).toEqual(numTriangles * 3);
 
         expect(st[length - 2]).toEqualEpsilon(0.5, CesiumMath.EPSILON2);

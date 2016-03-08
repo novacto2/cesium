@@ -84,7 +84,7 @@ defineSuite([
         }));
 
         expect(m.attributes.position.values.length).toEqual(16 * 3); // 8 top  + 8 bottom
-        expect(m.indices.length).toEqual(numLines * 2); // 8 top + 8 bottom + 8 sides
+        expect(m.indices.length).toEqual(24 * 2); // 8 top + 8 bottom + 8 sides
     });
 
     it('computes positions extruded, no lines drawn between top and bottom', function() {

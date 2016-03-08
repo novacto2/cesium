@@ -50,7 +50,7 @@ defineSuite([
         }));
 
         expect(m.attributes.position.values.length).toEqual(6 * 3); // 3 top + 3 bottom
-        expect(m.indices.length).toEqual(6 * 2);
+        expect(m.indices.length).toEqual(9 * 2); // 3 top + 3 bottom + 3 sides
     });
 
     it('computes positions with no lines along the length', function() {
